@@ -12,7 +12,6 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 call plug#end()
 
-colorscheme gruvbox
 highlight Normal guibg=none
 
 let mapleader = " "
