@@ -2,7 +2,7 @@
 colorscheme gruvbox
 " colorscheme tokyonight " reference: https://github.com/folke/tokyonight.nvim
 " colorscheme nightfox " reference: https://github.com/EdenEast/nightfox.nvim
-" sainnhe/everforest " reference: https://github.com/sainnhe/everforest
+" colorscheme everforest " reference: https://github.com/sainnhe/everforest
 
 let g:theprimeagen_colorscheme = "gruvbox"
 fun! ColorMyPencils()
