@@ -1,5 +1,6 @@
 
-call plug#begin()
+call plug#begin('~\AppData\Local\nvim\plugged') " Windows
+" call plug#begin(`~/.config/nvim/plugged`) " Linux
 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
