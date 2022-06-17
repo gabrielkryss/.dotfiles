@@ -7,7 +7,7 @@ Plug 'nvim-telescope/telescope.nvim'
 " Color Schemes
 Plug 'gruvbox-community/gruvbox'
 Plug 'relastle/bluewery.vim'
-Plug 'ciaranm/inkpot/colors/inkpot.vim', { 'branch': 'main' }
+Plug 'ciaranm/inkpot'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'sainnhe/everforest'
