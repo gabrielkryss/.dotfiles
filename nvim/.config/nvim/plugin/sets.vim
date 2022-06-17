@@ -17,6 +17,11 @@ set scrolloff=8
 set colorcolumn=80
 set signcolumn=yes
 
+" Terminal
+" (Windows) powershell
+" (Linux) use default so leave blank
+set shell=powershell
+
 " Ignore files
 set wildignore+=*.pyc
 set wildignore+=*_build/*
