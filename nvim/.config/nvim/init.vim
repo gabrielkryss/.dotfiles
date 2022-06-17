@@ -9,6 +9,7 @@ Plug 'relastle/bluewery.vim'
 Plug 'ciaranm/inkpot/blob/master/colors/inkpot.vim'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'sainnhe/everforest'
 
 call plug#end()
 
