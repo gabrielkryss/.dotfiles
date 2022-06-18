@@ -8,6 +8,8 @@ colorscheme gruvbox
 highlight Normal guibg=none ctermbg=none
 highlight NonText ctermbg=none
 
+g:neovide_cursor_vfx_mode = "railgun"
+
 let g:theprimeagen_colorscheme = "gruvbox"
 fun! ColorMyPencils()
     let g:gruvbox_contrast_dark = 'hard'
