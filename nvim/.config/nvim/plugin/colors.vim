@@ -5,6 +5,9 @@ colorscheme gruvbox
 " colorscheme nightfox " reference: https://github.com/EdenEast/nightfox.nvim
 " colorscheme everforest " reference: https://github.com/sainnhe/everforest
 
+highlight Normal guibg=none ctermbg=none
+highlight NonText ctermbg=none
+
 let g:theprimeagen_colorscheme = "gruvbox"
 fun! ColorMyPencils()
     let g:gruvbox_contrast_dark = 'hard'
