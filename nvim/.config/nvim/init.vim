@@ -14,6 +14,4 @@ Plug 'sainnhe/everforest'
 
 call plug#end()
 
-highlight Normal guibg=none
-
 let mapleader = " "
