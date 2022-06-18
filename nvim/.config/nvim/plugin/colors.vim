@@ -1,7 +1,6 @@
 "" Color Scheme Theme Sets
 colorscheme gruvbox
 " colorscheme bluewery " alt: bluewery-light reference: https://github.com/relastle/bluewery.vim
-" colorscheme inkpot " reference: https://github.com/ciaranm/inkpot
 " colorscheme tokyonight " reference: https://github.com/folke/tokyonight.nvim
 " colorscheme nightfox " reference: https://github.com/EdenEast/nightfox.nvim
 " colorscheme everforest " reference: https://github.com/sainnhe/everforest
