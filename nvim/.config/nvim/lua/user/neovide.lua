@@ -1,5 +1,5 @@
 -- Neovide settings ref: https://github.com/neovide/neovide/wiki/Configuration#transparency
-cmd [[
+vim.cmd [[
   let g:neovide_transparency=0.8 " 0.0 to 1.0
   let g:neovide_fullscreen=v:false
   let g:neovide_cursor_vfx_mode = "pixiedust" " options: railgun, torpedo, pixiedust, sonicboom, ripple, wireframe 
