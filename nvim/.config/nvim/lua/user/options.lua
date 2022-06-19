@@ -27,6 +27,7 @@ cim.opt.softtabstop = 4
 vim.opt.cursorline = true                       -- highlight the current line
 vim.opt.number = true                           -- set numbered lines
 vim.opt.relativenumber = false                  -- set relative numbered lines
+-- vim.opt.nu = true                            -- set true when relativenumber is set to true
 -- vim.opt.numberwidth = 4                         -- set number column width to 2 {default 4}
 vim.opt.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
 vim.opt.colorcolumn = 80
@@ -47,7 +48,7 @@ vim.opt.undodir="~/.nvim/undodir"
 vim.opt.undofile = true                         -- enable persistent undo
 
 -- Terminal
---(Windows) powershell
+-- (Windows) powershell
 -- (Linux) use default so leave blank
 set shell=powershell
 
