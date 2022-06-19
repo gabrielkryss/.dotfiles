@@ -1,6 +1,6 @@
 -- color scheme selections
 -------------------------
--- defaukt
+-- default
 -- gruvbox
 -- nightfox
 -- tokyonight
