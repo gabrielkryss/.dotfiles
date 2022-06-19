@@ -44,13 +44,13 @@ vim.opt.noswapfile = true
 vim.opt.backup = false                          -- creates a backup file
 vim.opt.nobackup = true
 vim.opt.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-vim.opt.undodir="~/.nvim/undodir"
+vim.opt.undodir= "~/.nvim/undodir"
 vim.opt.undofile = true                         -- enable persistent undo
 
 -- Terminal
 -- (Windows) powershell
 -- (Linux) use default so leave blank
-set shell=powershell
+vim.opt.shell= "powershell"
 
 vim.opt.cmdheight = 2                           -- more space in the neovim command line for displaying messages
 
