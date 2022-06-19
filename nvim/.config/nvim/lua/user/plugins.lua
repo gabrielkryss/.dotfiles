@@ -46,7 +46,7 @@ return packer.startup(function(use)
   use 'gruvbox-community/gruvbox'
   use 'relastle/bluewery.vim'
   use 'EdenEast/nightfox.nvim'
-  use {'folke/tokyonight.nvim', branch: 'main' }
+  use {'folke/tokyonight.nvim', branch = 'main' }
   use 'sainnhe/everforest'
   
   -- packer
