@@ -80,7 +80,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
--- Zoom in and out
+-- Zoom in and out TODO: THIS DOESN'T WORK!!
 vim.cmd [[
   " Increases the font size with `amount`
   function! Zoom(amount) abort
