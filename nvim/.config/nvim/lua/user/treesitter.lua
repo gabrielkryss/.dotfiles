@@ -7,7 +7,7 @@ configs.setup {
   ensure_installed = {
     "c",
     "cpp",
-    "llvm",
+--    "llvm",
     "rust",
     "go",
     "gomod",
