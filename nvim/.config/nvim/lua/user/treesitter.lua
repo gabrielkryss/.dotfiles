@@ -7,7 +7,7 @@ configs.setup {
   ensure_installed = {
     'c',
     'cpp', 
-    'rust,'
+    'rust',
     'go',
     'gomod',
     'typescript',
