@@ -31,7 +31,7 @@ configs.setup {
     "dockerfile",
     "solidity",
     "toml",
-    "yml",
+    "yaml",
     "json",
     "json5",
     "JSON with comments",
