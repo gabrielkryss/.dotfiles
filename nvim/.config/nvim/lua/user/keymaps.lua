@@ -79,3 +79,20 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- Zoom in and out
+cin.cmd [[
+  " Increases the font size with `amount`
+  function! Zoom(amount) abort
+    call ZoomSet(matchstr(&guifont, '\d\+$') + a:amount)
+  endfunc
+
+  " Sets the font size to `font_size`
+  function ZoomSet(font_size) abort
+    let &guifont = substitute(&guifont, '\d\+$', a:font_size, '')
+  endfunc
+
+  noremap <silent> <C-+> :call Zoom(v:count1)<CR>
+  noremap <silent> <C--> :call Zoom(-v:count1)<CR>
+  noremap <silent> <C-0> :call ZoomSet(11)<CR>
+]]
