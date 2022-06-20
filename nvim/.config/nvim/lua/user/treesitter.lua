@@ -17,6 +17,8 @@ configs.setup {
     "html",
     "python",
     "lua",
+    "c_sharp",
+    "java",
     "make",
     "ninja",
     "solidity",
