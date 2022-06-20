@@ -25,7 +25,8 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+-- NvimTree Toggle
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -61,6 +62,9 @@ vim.cmd [[
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+-- NvimTree Toggle
+keymap("v", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
 -- Move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
@@ -72,6 +76,9 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+-- NvimTree Toggle
+keymap("x", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Terminal --
 -- Better terminal navigation
