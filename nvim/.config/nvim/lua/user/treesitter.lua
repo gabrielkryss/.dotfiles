@@ -34,7 +34,6 @@ configs.setup {
     "yaml",
     "json",
     "json5",
-    "JSON with comments",
     "bash",
     "latex",
   }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
