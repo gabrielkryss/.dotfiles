@@ -81,7 +81,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Zoom in and out
-cin.cmd [[
+vim.cmd [[
   " Increases the font size with `amount`
   function! Zoom(amount) abort
     call ZoomSet(matchstr(&guifont, '\d\+$') + a:amount)
