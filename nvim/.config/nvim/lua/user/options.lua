@@ -33,7 +33,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.wrap = false                            -- display lines as one long line
 vim.opt.scrolloff = 8                           -- is one of my fav
 vim.opt.sidescrolloff = 8
--- vim.opt.guifont = { "Hack Nerd Font Mono", "h20" } -- the font used in graphical neovim applications
+vim.opt.guifont = { "Hack Nerd Font Mono", "h20" } -- the font used in graphical neovim applications
 vim.opt.guicursor = ""
 vim.opt.hidden = true
 vim.opt.errorbells = false
@@ -47,7 +47,7 @@ vim.opt.undofile = true                         -- enable persistent undo
 -- Terminal
 -- (Windows) powershell
 -- (Linux) use default so leave blank
-vim.opt.shell= "powershell"
+-- vim.opt.shell= "powershell"
 
 vim.opt.cmdheight = 2                           -- more space in the neovim command line for displaying messages
 

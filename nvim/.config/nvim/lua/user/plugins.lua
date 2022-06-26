@@ -50,6 +50,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua"
   use "akinsho/toggleterm.nvim"
   use "ahmedkhalf/project.nvim"
+  use "nyngwang/NeoZoom.lua" -- Note: only works in terminal but not neovide
 
   -- Color Schemes
   use 'gruvbox-community/gruvbox'
