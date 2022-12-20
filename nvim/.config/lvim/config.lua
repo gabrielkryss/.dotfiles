@@ -5,25 +5,22 @@
 
 -- Neovide
 vim.opt.guifont = { "Hack Nerd Font Mono", "h22" }
--- Neovide settings ref: https://github.com/neovide/neovide/wiki/Configuration#transparency
-vim.cmd [[
-  let g:neovide_transparency=0.8 " 0.0 to 1.0
-  let g:neovide_fullscreen=v:false
-  let g:neovide_cursor_vfx_mode = "pixiedust" " options: railgun, torpedo, pixiedust, sonicboom, ripple, wireframe 
-  let g:neovide_cursor_animation_length=0.1
-  let g:neovide_cursor_trail_length=0.8
-  let g:neovide_cursor_antialiasing=v:false
-  let g:neovide_cursor_vfx_opacity=300.0
-  let g:neovide_cursor_vfx_particle_lifetime=3.3
-  let g:neovide_cursor_vfx_particle_density=150.0
-  let g:neovide_cursor_vfx_particle_speed=7.0
-  let g:neovide_cursor_vfx_particle_phase=1.5 " Sets ... the phase? I'm not sure. Go poke @jonvaldes to figure out what it does.
-  let g:neovide_cursor_vfx_particle_curl=1.0 " Sets the ... I guess curl. I believe it has something to do with how the particles rotate in the Railgun trail. Again, go bug @jonvaldes.
-  let g:neovide_profiler = v:false
-  let g:neovide_refresh_rate=144
-  let g:neovide_remember_window_size = v:true
-  let g:neovide_no_idle=v:true
-]]
+-- Neovide settings ref: https://neovide.dev/configuration.html
+vim.g.neovide_fullscreen = false
+vim.g.neovide_cursor_vfx_mode = "pixiedust" -- options: railgun, torpedo, pixiedust, sonicboom, ripple, wireframe
+vim.g.neovide_cursor_animation_length = 0.13
+vim.g.neovide_cursor_trail_size = 0.8
+vim.g.neovide_cursor_antialiasing = false
+vim.g.neovide_cursor_vfx_opacity = 300.0
+vim.g.neovide_cursor_vfx_particle_lifetime = 3.3
+vim.g.neovide_cursor_vfx_particle_density = 150.0
+vim.g.neovide_cursor_vfx_particle_speed = 7.0
+vim.g.neovide_cursor_vfx_particle_phase = 1.5 -- Sets ... the phase? I'm not sure. Go poke @jonvaldes to figure out what it does.
+vim.g.neovide_cursor_vfx_particle_curl = 1.0 -- Sets the ... I guess curl. I believe it has something to do with how the particles rotate in the Railgun trail. Again, go bug @jonvaldes.
+vim.g.neovide_profiler = false
+-- vim.g.neovide_refresh_rate = 144
+vim.g.neovide_remember_window_size = true
+vim.g.neovide_no_idle = true
 
 -- Enable powershell as your default shell
 vim.opt.shell = "pwsh.exe -NoLogo"
@@ -66,6 +63,8 @@ lvim.format_on_save = {
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
@@ -82,7 +81,11 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.view.float = { enable = true }
+lvim.builtin.nvimtree.setup.view.adaptive_size = true
+lvim.builtin.nvimtree.setup.view.width = 25
+
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.auto_install = true
@@ -138,11 +141,11 @@ lvim.builtin.treesitter.auto_install = true
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
 lvim.plugins = {
   { 'gruvbox-community/gruvbox' },
-  { "folke/tokyonight.nvim" },
   { 'relastle/bluewery.vim' },
   { 'EdenEast/nightfox.nvim' },
   { 'sainnhe/everforest' },
   { 'olivercederborg/poimandres.nvim' },
+  { 'ThePrimeagen/vim-be-good' },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
