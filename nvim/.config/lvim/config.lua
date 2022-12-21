@@ -6,6 +6,10 @@
 -- Neovide
 vim.opt.guifont = { "Hack Nerd Font Mono", "h22" }
 -- Neovide settings ref: https://neovide.dev/configuration.html
+vim.g.neovide_transparency = 0.8
+vim.g.neovide_scroll_animation_length = 0.3
+vim.g.neovide_underline_automatic_scaling = false
+vim.g.neovide_refresh_rate_idle = 5
 vim.g.neovide_fullscreen = false
 vim.g.neovide_cursor_vfx_mode = "pixiedust" -- options: railgun, torpedo, pixiedust, sonicboom, ripple, wireframe
 vim.g.neovide_cursor_animation_length = 0.13
@@ -80,11 +84,18 @@ lvim.colorscheme = "poimandres"
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.view.float = { enable = true }
 lvim.builtin.nvimtree.setup.view.adaptive_size = true
 lvim.builtin.nvimtree.setup.view.width = 25
-
+lvim.builtin.nvimtree.setup.view.float.open_win_config = {
+  relative = "editor",
+  border = "rounded",
+  width = 25,
+  height = 25,
+  col = 11,
+  row = 3,
+}
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- Automatically install missing parsers when entering buffer
