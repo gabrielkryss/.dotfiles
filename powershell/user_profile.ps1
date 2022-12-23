@@ -1,3 +1,6 @@
+## NOTE: paste the following line into $PROFILE.CurrentUserCurrentHost (use nvim to open that file)
+## $env:USERPROFILE\.config\powershell\user_profile.ps1
+
 # set PowerShell to UTF-8
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
