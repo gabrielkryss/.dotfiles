@@ -16,10 +16,22 @@ return require('packer').startup(function(use)
   use({
 	  'rose-pine/neovim',
 	  as = 'rose-pine',
-	  config = function()
-		  vim.cmd('colorscheme rose-pine')
-	  end
   })
+  use ('gruvbox-community/gruvbox')
+  use ('relastle/bluewery.vim')
+  use ('EdenEast/nightfox.nvim')
+  use ('sainnhe/everforest')
+  use {
+	'olivercederborg/poimandres.nvim',
+	config = function()
+	  require('poimandres').setup {
+		-- leave this setup function empty for default config
+		-- or refer to the configuration section
+		-- for configuration options
+	  }
+	end
+  }
+  use ('ThePrimeagen/vim-be-good')
 
   use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
   use('nvim-treesitter/playground')
@@ -51,6 +63,12 @@ return require('packer').startup(function(use)
 
   use("folke/zen-mode.nvim")
   use("github/copilot.vim")
+  use("Inazuma110/disarrow.vim")
+  use {"folke/which-key.nvim"}
 
 end)
 
+-- augroup packer_user_config
+--   autocmd!
+--   autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+-- augroup end
