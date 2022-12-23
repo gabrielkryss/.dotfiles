@@ -5,7 +5,6 @@
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
 Import-Module posh-git
-Import-Module oh-my-posh
 # themes link ref: https://ohmyposh.dev/docs/themes
 # - star
 # - spaceship
@@ -16,9 +15,9 @@ Import-Module oh-my-posh
 # - the-unnamed
 # - neko
 # - multiverse-neon
-SetPoshPrompt star
-# $omp_config = Join-Path $PSScriptRoot "" # oh-my-posh (omp) config file e.g. ".\takuya.omp.json"
-# oh-my-posh --init --shell pwsh --config $omp_config | Invoke-Expression
+# $omp_config = Join-Path "" #  local oh-my-posh (omp) config file e.g. ".\takuya.omp.json"
+$omp_config = Join-Path $PSScriptRoot https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/star.omp.json # remote omp config
+oh-my-posh --init --shell pwsh --config $omp_config | Invoke-Expression
 
 Import-Module -Name Terminal-Icons
 
