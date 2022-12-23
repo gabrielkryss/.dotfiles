@@ -7,7 +7,7 @@ end
 wk.register({
     ["<leader>pv"] = "netrw",
     ["<leader>p"] = "paste without buffer override", -- paste without removing what is in the current buffer
-    ["<leader>ps"] = "project search (only get repos)",
+    ["<leader>ps"] = "project search",
     ["<leader>y"] = "yank to clipboard",
     ["<leader>Y"] = "yank to clipboard",
     ["<leader>d"] = "delete to clipboard",
@@ -17,16 +17,15 @@ wk.register({
     ["<leader>j"] = "lprev",
     ["<leader>x"] = "make current file executable (Unix only)",
     ["<leader>pf"] = "find files",
-    ["<leader>ps"] = "grep string",
     ["<leader>a"] = "harpoon mark",
     ["<leader>e"] = "harpoon ui",
     ["<leader>u"] = "undotree",
     ["<leader>gs"] = "git (fugitive)",
     ["<leader>zz"] = "zen mode",
-    ["<leader>M"] = "mason"
-    ["<leader>gd"] = "goto definition"
-    ["<leader>vrn"] = "goto references"
-    ["<leader>vrn"] = "rename"
+    ["<leader>M"] = "mason",
+    ["<leader>gd"] = "goto definition",
+    ["<leader>vrr"] = "goto references",
+    ["<leader>vrn"] = "rename",
 })
 
 wk.setup {
