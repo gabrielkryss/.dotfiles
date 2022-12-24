@@ -15,6 +15,9 @@ Import-Module posh-git
 # - the-unnamed
 # - neko
 # - multiverse-neon
+# - lambdageneration
+# - velvet
+# - xtoys
 $omp_config = Join-Path $PSScriptRoot ".\themes\star.omp.json" #  local oh-my-posh (omp) config file e.g. ".\takuya.omp.json"
 # $omp_config = "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/star.omp.json" # remote omp config
 oh-my-posh --init --shell pwsh --config $omp_config | Invoke-Expression
