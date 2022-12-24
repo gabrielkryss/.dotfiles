@@ -1,3 +1,9 @@
+local installed, _ = pcall(require, "zen-mode")
+
+if not installed then
+	return
+end
+
 require("zen-mode").setup {
     window = {
         width = 90,

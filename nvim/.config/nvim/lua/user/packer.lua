@@ -61,6 +61,18 @@ return require('packer').startup(function(use)
 	  }
   }
 
+  use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  use {
+		'goolord/alpha-nvim',
+		config = function ()
+			require'alpha'.setup(require'alpha.themes.dashboard'.config)
+		end
+	}
+
   use("folke/zen-mode.nvim")
   use("github/copilot.vim")
   use("Inazuma110/disarrow.vim")

@@ -1,3 +1,9 @@
+local installed, wk = pcall(require, "fugitive")
+
+if not installed then
+	return
+end
+
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
 local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})

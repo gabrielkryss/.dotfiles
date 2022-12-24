@@ -18,7 +18,7 @@ wk.register({
     ["<leader>x"] = "make current file executable (Unix only)",
     ["<leader>pf"] = "find files",
     ["<leader>a"] = "harpoon mark",
-    ["<leader>e"] = "harpoon ui",
+    ["<C-e>"] = "harpoon ui",
     ["<leader>u"] = "undotree",
     ["<leader>gs"] = "git (fugitive)",
     ["<leader>zz"] = "zen mode",
