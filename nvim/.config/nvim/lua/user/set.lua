@@ -40,8 +40,8 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
--- place holder: "C:\\Users\\Gabriel\\AppData\\Local\nvim-data\\undodir"
-vim.opt.undodir = vim.env.HOME .. "\\AppData\\Local\nvim-data\\undodir" -- for windows, make sure to MANUALLY create this foler and that it exists, thought it might not solve the os.getenv("HOME") issue
+-- place holder: "C:\\Users\\Gabriel\\AppData\\Local\\nvim-data\\undodir"
+vim.opt.undodir = vim.env.HOME .. "\\AppData\\Local\\nvim-data\\undodir" -- for windows, make sure to MANUALLY create this foler and that it exists, thought it might not solve the os.getenv("HOME") issue
 -- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir" -- for Unix
 vim.opt.undofile = true
 
