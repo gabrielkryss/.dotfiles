@@ -26,7 +26,7 @@ vim.g.neovide_remember_window_size = true
 vim.g.neovide_no_idle = true
 
 -- for windows
-vim.opt.shell = "C:\\Windows\\System32\\WindowsPowerShell\v1.0\\powershell.exe"
+vim.opt.shell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
 vim.opt.winbar = "%=%m %f"
 
