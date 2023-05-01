@@ -32,23 +32,29 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "initialCols": 90,
+    "initialRows": 20,
     "profiles": 
     {
         "defaults": 
         {
             "backgroundImage": null,
-            "backgroundImageOpacity": 0.20000000000000001,
-            "colorScheme": "lambdageneration",
+            "backgroundImageAlignment": "center",
+            "backgroundImageOpacity": 0.5,
+            "backgroundImageStretchMode": "uniformToFill",
+            "colorScheme": "One Half Dark (modded blue)",
             "cursorShape": "filledBox",
             "experimental.retroTerminalEffect": false,
             "font": 
             {
                 "face": "Hack Nerd Font Mono",
-                "size": 15
+                "size": 15.0
             },
-            "opacity": 25,
+            "intenseTextStyle": "all",
+            "opacity": 77,
             "scrollbarState": "hidden",
-            "useAcrylic": true
+            "useAcrylic": false,
+            "useAtlasEngine": true
         },
         "list": 
         [
@@ -87,6 +93,13 @@
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "commandline": "nu.exe",
+                "guid": "{2b372ca1-1ee2-403d-a839-6d63077ad871}",
+                "hidden": false,
+                "icon": "https://www.nushell.sh/icon.png",
+                "name": "Nu Shell"
             }
         ]
     },
@@ -162,6 +175,29 @@
             "yellow": "#E5C07B"
         },
         {
+            "background": "#000000",
+            "black": "#282C34",
+            "blue": "#61AFEF",
+            "brightBlack": "#5A6374",
+            "brightBlue": "#61AFEF",
+            "brightCyan": "#56B6C2",
+            "brightGreen": "#98C379",
+            "brightPurple": "#C678DD",
+            "brightRed": "#E06C75",
+            "brightWhite": "#DCDFE4",
+            "brightYellow": "#E5C07B",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#56B6C2",
+            "foreground": "#DCDFE4",
+            "green": "#98C379",
+            "name": "One Half Dark (modded black)",
+            "purple": "#C678DD",
+            "red": "#E06C75",
+            "selectionBackground": "#FFFFFF",
+            "white": "#DCDFE4",
+            "yellow": "#E5C07B"
+        },
+        {
             "background": "#000B17",
             "black": "#282C34",
             "blue": "#61AFEF",
@@ -177,7 +213,7 @@
             "cyan": "#56B6C2",
             "foreground": "#DCDFE4",
             "green": "#98C379",
-            "name": "One Half Dark (modded)",
+            "name": "One Half Dark (modded blue)",
             "purple": "#C678DD",
             "red": "#E06C75",
             "selectionBackground": "#FFFFFF",
@@ -346,5 +382,6 @@
             "yellow": "#E5C07B"
         }
     ],
+    "themes": [],
     "useAcrylicInTabRow": true
 }
