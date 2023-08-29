@@ -25,6 +25,13 @@ vim.g.neovide_profiler = false
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_no_idle = true
 
+-- Recommended Neovim statusline settings
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
+-- Default splitting will cause your main splits to jump when opening an edgebar.
+-- To prevent this, set `splitkeep` to either `screen` or `topline`.
+vim.opt.splitkeep = "screen"
+
 -- for windows
 vim.opt.shell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

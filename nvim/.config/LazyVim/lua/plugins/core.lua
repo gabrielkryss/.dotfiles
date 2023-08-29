@@ -7,9 +7,57 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "poimandres",
+      -- colorscheme = "poimandres",
+			colorscheme = "catppuccin",
+			-- colorscheme = "tokyonight",
     },
   },
+	-- Edgy: LazyVim Core UI
+	{
+		"folke/edgy.nvim",
+		opts = {
+			left = {},
+			right = {
+				{
+					title = "Neo-Tree",
+					ft = "neo-tree",
+					filter = function(buf)
+						return vim.b[buf].neo_tree_source == "filesystem"
+					end,
+					pinned = true,
+					open = function()
+						vim.api.nvim_input("<esc><space>e")
+					end,
+					size = { height = 0.5 },
+				},
+				{ title = "Neotest Summary", ft = "neotest-summary" },
+				{
+					title = "Neo-Tree Git",
+					ft = "neo-tree",
+					filter = function(buf)
+						return vim.b[buf].neo_tree_source == "git_status"
+					end,
+					pinned = true,
+					open = "Neotree position=right git_status",
+				},
+				{
+					title = "Neo-Tree Buffers",
+					ft = "neo-tree",
+					filter = function(buf)
+						return vim.b[buf].neo_tree_source == "buffers"
+					end,
+					pinned = true,
+					open = "Neotree position=top buffers",
+				},
+				"neo-tree",
+			},
+			animate = {
+				enabled = true,
+				fps = 100, -- frames per second
+				cps = 120, -- cells per second
+			},
+		},
+	},
   -- add symbols-outline
   {
     "simrat39/symbols-outline.nvim",
@@ -76,11 +124,6 @@ return {
   -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
   { import = "lazyvim.plugins.extras.lang.typescript" },
-	-- others
-  { import = "lazyvim.plugins.extras.lang.rust" },
-  { import = "lazyvim.plugins.extras.lang.go" },
-  { import = "lazyvim.plugins.extras.lang.python" },
-  { import = "lazyvim.plugins.extras.lang.docker" },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
