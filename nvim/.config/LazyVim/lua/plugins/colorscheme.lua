@@ -1,5 +1,19 @@
 return {
-  { "rose-pine/neovim" },
+  {
+    "rose-pine/neovim",
+    lazy = false,
+    name = "rose-pine",
+    opts = {
+      --- @usage 'auto'|'main'|'moon'|'dawn'
+      variant = "auto",
+      --- @usage 'main'|'moon'|'dawn'
+      dark_variant = "main",
+      bold_vert_split = false,
+      dim_nc_background = false,
+      disable_background = true,
+      disable_float_background = true,
+    },
+  },
   { "ellisonleao/gruvbox.nvim" },
   { "olivercederborg/poimandres.nvim" },
   { "relastle/bluewery.vim" },
@@ -21,13 +35,14 @@ return {
   },
   {
     "folke/tokyonight.nvim",
+    lazy = false,
+    transparent = true,
+    priority = 1000,
     opts = {
-      lazy = false,
-      transparent = true,
-      priority = 1000,
-      styles = {},
-      sidebars = "transparent",
-      floats = "transparent",
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
   {

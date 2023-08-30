@@ -16,9 +16,13 @@ return {
       -- colorscheme = "catppuccin",
       -- colorscheme = "catppuccin-latte",
       -- colorscheme = "catppuccin-frappe",
-      -- colorscheme = "catppuccin-macchiato",
       colorscheme = "catppuccin-mocha",
+      -- colorscheme = "catppuccin-macchiato",
       -- colorscheme = "dark_modern",
+      -- colorscheme = "rose-pine",
+      -- colorscheme = "rose-pine-main",
+      -- colorscheme = "rose-pine-moon",
+      -- colorscheme = "rose-pine-dawn",
     },
   },
   -- Edgy: LazyVim Core UI
@@ -62,8 +66,8 @@ return {
       },
       animate = {
         enabled = true,
-        fps = 100, -- frames per second
-        cps = 120, -- cells per second
+        fps = 144, -- frames per second
+        cps = 200, -- cells per second
       },
     },
   },

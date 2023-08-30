@@ -17,11 +17,11 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.yanky" },
     -- { import = "lazyvim.plugins.extras.editor.leap" },
     { import = "lazyvim.plugins.extras.editor.mini-files" },
-    
+
     -- DAP
     -- { import = "lazyvim.plugins.extras.dap.core" },
     -- { import = "lazyvim.plugins.extras.dap.nlua" },
-    
+
     -- Editor
     -- { import = "lazyvim.plugins.extras.editor.flash" }, // LazyVim is installed by default now so no need to comment this in but if flash ios not installed uncomment, install and comment out later
     -- { import = "lazyvim.plugins.extras.editor.leap" },
