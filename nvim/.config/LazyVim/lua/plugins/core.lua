@@ -7,66 +7,66 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "poimandres",
-			-- colorscheme = "tokyonight",
-			-- colorscheme = "tokyonight-night",
-			-- colorscheme = "tokyonight-storm",
-			-- colorscheme = "tokyonight-moon",
-			-- colorscheme = "tokyonight-day",
-			-- colorscheme = "catppuccin",
-			-- colorscheme = "catppuccin-latte",
-			-- colorscheme = "catppuccin-frappe",
-			-- colorscheme = "catppuccin-macchiato",
-			-- colorscheme = "catppuccin-mocha",
-			-- colorscheme = "dark_modern",
+      -- colorscheme = "poimandres",
+      -- colorscheme = "tokyonight",
+      -- colorscheme = "tokyonight-night",
+      -- colorscheme = "tokyonight-storm",
+      -- colorscheme = "tokyonight-moon",
+      -- colorscheme = "tokyonight-day",
+      -- colorscheme = "catppuccin",
+      -- colorscheme = "catppuccin-latte",
+      -- colorscheme = "catppuccin-frappe",
+      -- colorscheme = "catppuccin-macchiato",
+      colorscheme = "catppuccin-mocha",
+      -- colorscheme = "dark_modern",
     },
   },
-	-- Edgy: LazyVim Core UI
-	{
-		"folke/edgy.nvim",
-		opts = {
-			left = {},
-			right = {
-				{
-					title = "Neo-Tree",
-					ft = "neo-tree",
-					filter = function(buf)
-						return vim.b[buf].neo_tree_source == "filesystem"
-					end,
-					pinned = true,
-					open = function()
-						vim.api.nvim_input("<esc><space>e")
-					end,
-					size = { height = 0.5 },
-				},
-				{ title = "Neotest Summary", ft = "neotest-summary" },
-				{
-					title = "Neo-Tree Git",
-					ft = "neo-tree",
-					filter = function(buf)
-						return vim.b[buf].neo_tree_source == "git_status"
-					end,
-					pinned = true,
-					open = "Neotree position=right git_status",
-				},
-				{
-					title = "Neo-Tree Buffers",
-					ft = "neo-tree",
-					filter = function(buf)
-						return vim.b[buf].neo_tree_source == "buffers"
-					end,
-					pinned = true,
-					open = "Neotree position=top buffers",
-				},
-				"neo-tree",
-			},
-			animate = {
-				enabled = true,
-				fps = 100, -- frames per second
-				cps = 120, -- cells per second
-			},
-		},
-	},
+  -- Edgy: LazyVim Core UI
+  {
+    "folke/edgy.nvim",
+    opts = {
+      left = {},
+      right = {
+        {
+          title = "Neo-Tree",
+          ft = "neo-tree",
+          filter = function(buf)
+            return vim.b[buf].neo_tree_source == "filesystem"
+          end,
+          pinned = true,
+          open = function()
+            vim.api.nvim_input("<esc><space>e")
+          end,
+          size = { height = 0.5 },
+        },
+        { title = "Neotest Summary", ft = "neotest-summary" },
+        {
+          title = "Neo-Tree Git",
+          ft = "neo-tree",
+          filter = function(buf)
+            return vim.b[buf].neo_tree_source == "git_status"
+          end,
+          pinned = true,
+          open = "Neotree position=right git_status",
+        },
+        {
+          title = "Neo-Tree Buffers",
+          ft = "neo-tree",
+          filter = function(buf)
+            return vim.b[buf].neo_tree_source == "buffers"
+          end,
+          pinned = true,
+          open = "Neotree position=top buffers",
+        },
+        "neo-tree",
+      },
+      animate = {
+        enabled = true,
+        fps = 100, -- frames per second
+        cps = 120, -- cells per second
+      },
+    },
+  },
   -- add symbols-outline
   {
     "simrat39/symbols-outline.nvim",
@@ -152,7 +152,7 @@ return {
         "vim",
         "yaml",
         "rust",
-				"go",
+        "go",
       },
     },
   },
@@ -244,6 +244,16 @@ return {
       })
     end,
   },
+  -- override nvim-cmp and add cmp-emoji
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "hrsh7th/cmp-emoji" },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+    end,
+  },
   {
     "echasnovski/mini.surround",
     opts = {
@@ -264,6 +274,16 @@ return {
       window = {
         position = "right",
         width = 27,
+      },
+    },
+  },
+  {
+    "echasnovski/mini.files",
+    opts = {
+      windows = {
+        preview = true,
+        width_focus = 30,
+        width_preview = 50,
       },
     },
   },
