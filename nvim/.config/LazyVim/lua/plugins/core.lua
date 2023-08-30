@@ -7,9 +7,18 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "poimandres",
-			colorscheme = "catppuccin",
+      colorscheme = "poimandres",
 			-- colorscheme = "tokyonight",
+			-- colorscheme = "tokyonight-night",
+			-- colorscheme = "tokyonight-storm",
+			-- colorscheme = "tokyonight-moon",
+			-- colorscheme = "tokyonight-day",
+			-- colorscheme = "catppuccin",
+			-- colorscheme = "catppuccin-latte",
+			-- colorscheme = "catppuccin-frappe",
+			-- colorscheme = "catppuccin-macchiato",
+			-- colorscheme = "catppuccin-mocha",
+			-- colorscheme = "dark_modern",
     },
   },
 	-- Edgy: LazyVim Core UI

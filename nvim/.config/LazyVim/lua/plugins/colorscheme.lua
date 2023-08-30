@@ -9,6 +9,7 @@ return {
         "catppuccin/nvim",
         lazy = true,
         name = "catppuccin",
+        priority = 1000,
         opts = {
             transparent_background = true,
             term_colors = true,
@@ -22,10 +23,21 @@ return {
         "folke/tokyonight.nvim",
         opts = {
             transparent = true,
+            priority = 1000,
             styles = {
                 sidebars = "transparent",
                 floats = "transparent",
             },
         },
-    }
+    },
+    {
+        "gmr458/dark_modern.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            cursorline = true,
+            transparent_background = true,
+            nvim_tree_darker = true,
+        }
+    },
 }
