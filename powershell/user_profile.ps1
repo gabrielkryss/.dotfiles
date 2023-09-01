@@ -36,6 +36,7 @@
 # oh-my-posh --init --shell pwsh --config $omp_config | Invoke-Expression
 
 $ENV:STARSHIP_CONFIG = "$HOME\.config\starship\starship.toml"
+$ENV:STARSHIP_CACHE = "$HOME\AppData\Local\Temp"
 
 Import-Module -Name Terminal-Icons
 
