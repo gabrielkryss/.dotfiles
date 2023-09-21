@@ -120,8 +120,8 @@ export EDITOR=nvim
 
 set colored-completion-prefix on
 
-if command -v exa >/dev/null; then
-    alias ls='exa -alBh@ --color auto --icons --time=modified --time-style=default --color-scale'
+if command -v eza >/dev/null; then
+    alias ls='eza -alBh@ --color auto --icons --time=modified --time-style=default --color-scale'
 fi
 
 jump() {
