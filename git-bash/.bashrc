@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export STARSHIP_CACHE="$HOME/AppData/Local/Temp"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -142,4 +145,4 @@ za() {
 }
 
 eval "$(starship init bash)"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
