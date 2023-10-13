@@ -13,10 +13,10 @@ return {
       -- colorscheme = "tokyonight-storm",
       -- colorscheme = "tokyonight-moon",
       -- colorscheme = "tokyonight-day",
-      -- colorscheme = "catppuccin",
+      colorscheme = "catppuccin",
       -- colorscheme = "catppuccin-latte",
       -- colorscheme = "catppuccin-frappe",
-      colorscheme = "catppuccin-mocha",
+      -- colorscheme = "catppuccin-mocha",
       -- colorscheme = "catppuccin-macchiato",
       -- colorscheme = "dark_modern",
       -- colorscheme = "rose-pine",
@@ -106,7 +106,7 @@ return {
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       init = function()
-        require("lazyvim.util").on_attach(function(_, buffer)
+        require("lazyvim.util").lsp.on_attach(function(_, buffer)
           -- stylua: ignore
           vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
           vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })

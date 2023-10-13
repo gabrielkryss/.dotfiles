@@ -15,7 +15,6 @@ require("lazy").setup({
     -- Coding
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
     { import = "lazyvim.plugins.extras.coding.yanky" },
-    -- { import = "lazyvim.plugins.extras.editor.leap" },
     { import = "lazyvim.plugins.extras.editor.mini-files" },
 
     -- DAP
@@ -28,7 +27,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.mini-files" },
 
     -- Formating
-    -- { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
 
     -- Lang
     -- { import = "lazyvim.plugins.extras.lang.clangd" },
@@ -45,7 +44,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.tailwind" },
     -- { import = "lazyvim.plugins.extras.lang.terraform" },
     -- { import = "lazyvim.plugins.extras.lang.tex" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
+    -- { import = "lazyvim.plugins.extras.lang.typescript" },
     -- { import = "lazyvim.plugins.extras.lang.yaml" },
 
     -- Linting
@@ -54,8 +53,8 @@ require("lazy").setup({
     -- Test
     -- { import = "lazyvim.plugins.extras.test.core" },
 
-    -- UI
-    { import = "lazyvim.plugins.extras.ui.edgy" },
+    -- -- UI
+    -- { import = "lazyvim.plugins.extras.ui.edgy" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
