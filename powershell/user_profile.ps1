@@ -63,6 +63,14 @@ Set-Alias grep findstr
 Set-Alias vim nvim 
 Set-Alias ll ls 
 
+# Checked if eza is installed
+if (Get-Command eza -ErrorAction SilentlyContinue) {
+  function myEzaList { 
+    eza -1albBghiS --icons=auto --color=auto --color-scale=all --color-scale-mode=gradient --group-directories-first --hyperlink --total-size
+  }
+  Set-Alias ls myEzaList
+} 
+
 # Utilities
 function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
