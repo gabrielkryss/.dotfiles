@@ -4,39 +4,71 @@
     "actions": 
     [
         {
-            "command": "unbound"
-        },
-        {
-            "command": { "action": "switchToTab", "index": 0 },
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 0
+            },
             "keys": "ctrl+1"
         },
         {
-            "command": { "action": "switchToTab", "index": 1 },
-            "keys": "ctrl+2"
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 7
+            },
+            "keys": "ctrl+8"
         },
         {
-            "command": { "action": "switchToTab", "index": 2 },
-            "keys": "ctrl+3"
+            "command": "unbound"
         },
         {
-            "command": { "action": "switchToTab", "index": 3 },
-            "keys": "ctrl+4"
-        },
-        {
-            "command": { "action": "switchToTab", "index": 4 },
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 4
+            },
             "keys": "ctrl+5"
         },
         {
-            "command": { "action": "switchToTab", "index": 5 },
-            "keys": "ctrl+6"
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 1
+            },
+            "keys": "ctrl+2"
         },
         {
-            "command": { "action": "switchToTab", "index": 6 },
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 2
+            },
+            "keys": "ctrl+3"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 3
+            },
+            "keys": "ctrl+4"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 6
+            },
             "keys": "ctrl+7"
         },
         {
-            "command": { "action": "switchToTab", "index": 7 },
-            "keys": "ctrl+8"
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 5
+            },
+            "keys": "ctrl+6"
         },
         {
             "command": 
@@ -51,13 +83,13 @@
             "command": "find",
             "keys": "ctrl+shift+f"
         },
-        {
-            "command": 
-            {
-                "action": "nextTab"
-            },
-            "keys": "tab"
-        },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "nextTab"
+        //     },
+        //     "keys": "tab"
+        // },
         {
             "command": 
             {
@@ -65,13 +97,13 @@
             },
             "keys": "alt+l"
         },
-        {
-            "command": 
-            {
-                "action": "prevTab"
-            },
-            "keys": "shift+tab"
-        },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "prevTab"
+        //     },
+        //     "keys": "shift+tab"
+        // },
         {
             "command": 
             {
