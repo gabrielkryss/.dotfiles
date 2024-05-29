@@ -51,9 +51,9 @@ Set-PSReadLineOption -EditMode Emacs
 
 # # Fzf
 Import-Module PSFzf
-Enable-PsFzfAliases
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
-Set-PSReadLineKeyHandler -Chord ctrl+f -ScriptBlock { fd | Invoke-fzf | Set-Location }
+# Enable-PsFzfAliases
+# Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+# Set-PSReadLineKeyHandler -Chord ctrl+f -ScriptBlock { fd | Invoke-fzf | Set-Location }
 
 # ZLocation
 Import-Module ZLocation
