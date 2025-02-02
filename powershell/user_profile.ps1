@@ -65,8 +65,8 @@ Set-Alias ll ls
 
 # Checked if eza is installed
 if (Get-Command eza -ErrorAction SilentlyContinue) {
-  function myEzaList { 
-    eza -1albBghiS --icons=auto --color=auto --color-scale=all --color-scale-mode=gradient --group-directories-first --hyperlink --total-size
+  function myEzaList { param([string]$Path = ".")
+    eza -1albBghiS --icons=auto --color=auto --color-scale=all --color-scale-mode=gradient --group-directories-first --hyperlink --total-size $Path
   }
   Set-Alias ls myEzaList
 } 
