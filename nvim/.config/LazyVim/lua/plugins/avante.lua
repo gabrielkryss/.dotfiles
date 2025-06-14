@@ -7,16 +7,25 @@ return {
     -- add any opts here
     provider = "ollama",
     auto_suggestions_provider = "ollama",
+    cursor_applying_provider = "ollama",
+    behaviour = {
+      --- ... existing behaviours
+      enable_cursor_planning_mode = true, -- enable cursor planning mode!
+    },
     debug = true,
-    ollama = {
-      api_key_name = "",
-      endpoint = "http://127.0.0.1:11434",
-      model = "ollama3:8b",
-      options = {
-        num_ctx = 32768,
-        temperature = 0,
+    providers = {
+      ollama = {
+        api_key_name = "",
+        endpoint = "http://127.0.0.1:11434",
+        model = "llama3:8b",
+        extra_request_body = {
+          options = {
+            num_ctx = 32768,
+            temperature = 0,
+          },
+        },
+        stream = true,
       },
-      stream = true,
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
