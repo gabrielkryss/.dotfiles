@@ -1,4 +1,13 @@
 return {
+  -- add gruvbox
+  {
+    "ellisonleao/gruvbox.nvim",
+    opts = {
+      -- transparent_mode = true,
+      contrast = "hard", -- options: "soft", "medium", "hard"
+    },
+  },
+
   {
     "rose-pine/neovim",
     lazy = false,
@@ -10,8 +19,8 @@ return {
       dark_variant = "main",
       bold_vert_split = false,
       dim_nc_background = false,
-      disable_background = true,
-      disable_float_background = true,
+      -- disable_background = true,
+      -- disable_float_background = true,
     },
   },
   { "ellisonleao/gruvbox.nvim" },
@@ -25,7 +34,7 @@ return {
     name = "catppuccin",
     priority = 1000,
     opts = {
-      transparent_background = true,
+      -- transparent_background = true,
       term_colors = true,
       integrations = {
         neotree = true,
@@ -36,7 +45,7 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    transparent = true,
+    -- transparent = true,
     priority = 1000,
     opts = {
       styles = {
@@ -51,8 +60,19 @@ return {
     priority = 1000,
     opts = {
       cursorline = true,
-      transparent_background = true,
+      -- transparent_background = true,
       nvim_tree_darker = true,
+    },
+  },
+
+  -- Configure LazyVim to load gruvbox
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+      -- colorscheme = "rose-pine",
+      -- colorscheme = "gruvbox",
+      -- colorscheme = "tokyonight",
     },
   },
 }
