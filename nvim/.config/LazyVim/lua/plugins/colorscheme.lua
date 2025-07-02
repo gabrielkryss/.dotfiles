@@ -34,7 +34,7 @@ return {
     name = "catppuccin",
     priority = 1000,
     opts = {
-      -- transparent_background = true,
+      transparent_background = true,
       term_colors = true,
       integrations = {
         neotree = true,
