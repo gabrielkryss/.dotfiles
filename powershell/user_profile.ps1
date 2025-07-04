@@ -5,14 +5,27 @@
 ## Install-Module -Name Terminal-Icons -Repository PSGallery
 ## Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
 ## Install-Module -Name z -Force
-## scoop install fzf
-## scoop install fzf OR Install-Module -Name PSFzf -scope currentUser
 ## Install-Module -Name ZLocation -scope currentUser
-## scoop install fd
-## scoop install starship
-## scoop install ripgrep
-## Install-Module posh-git -Scope CurrentUser
-## Install-Module oh-my-posh -Scope CurrentUser
+## winget install fzf OR Install-Module -Name PSFzf -scope currentUser
+## winget install fzf
+## winget install fd
+## winget install starship
+## winget install ripgrep
+## winget install GlazeWM
+## winget install carapace
+## winget install bat
+## winget install bottom
+## winget install fastfetch
+## winget install lazygit
+## winget install zoxide
+## winget install eza
+## winget install starship
+## winget install Neovim
+## winget install Git
+## winget install Obsidian
+## winget install Powertoys
+## winget install Everything
+## winget install vivid
 
 # set PowerShell to UTF-8
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
@@ -43,20 +56,20 @@ Import-Module -Name Terminal-Icons
 # # PSReadLine
 # Set Some Option for PSReadLine to show the history of our typed commands
 # Set-PSReadLineOption -BellStyle None
-Set-PSReadLineOption -PredictionSource History 
-Set-PSReadLineOption -PredictionViewStyle ListView 
-Set-PSReadLineOption -EditMode Emacs 
+# Set-PSReadLineOption -PredictionSource History 
+# Set-PSReadLineOption -PredictionViewStyle ListView 
+# Set-PSReadLineOption -EditMode Emacs 
 
 # Installation lines:
 
 # # Fzf
-Import-Module PSFzf
+# Import-Module PSFzf
 # Enable-PsFzfAliases
 # Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 # Set-PSReadLineKeyHandler -Chord ctrl+f -ScriptBlock { fd | Invoke-fzf | Set-Location }
 
 # ZLocation
-Import-Module ZLocation
+# Import-Module ZLocation
 
 # Aliases
 Set-Alias grep findstr
@@ -69,7 +82,34 @@ if (Get-Command eza -ErrorAction SilentlyContinue) {
     eza -1albBghiS --icons=auto --color=auto --color-scale=all --color-scale-mode=gradient --group-directories-first --hyperlink --total-size $Path
   }
   Set-Alias ls myEzaList
-} 
+}
+
+# Carapace CLI completion engine
+$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+carapace _carapace | Out-String | Invoke-Expression
+# vincent, CLI for selecting terminal color themes, not available on winget yet but maybe in the future?
+# vincent _carapace | Out-String | Invoke-Expression 
+
+# optional
+# (all options)link: https://gogh-co.github.io/Gogh/
+# - catppuccin-mocha
+# - catppuccin-macchiato
+# - catppuccin-frappé
+# - gruvbox-dark
+# - gruvbox-material-dark
+# - rosé-pine
+# - rosé-pine-moon
+# - everforest-dark-hard
+# - everforest-dark-medium
+# - everforest-dark-soft
+$env:LS_COLORS = (vivid generate catppuccin-mocha)
+# set carapace display style (doesn't work?)
+# Set style for values
+carapace --style 'carapace.Value=bg-bright,black,bold'
+# Set style for descriptions (leave empty to disable styling)
+carapace --style 'carapace.Description='
 
 # Utilities
 function which ($command) {
