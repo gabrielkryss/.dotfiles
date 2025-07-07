@@ -56,8 +56,8 @@ require("lazy").setup({
     -- UI
     -- { import = "lazyvim.plugins.extras.ui.dashboard" }, Note: dashboard is the default so explicitly ebaling will trigger a warning message
     -- { import = "lazyvim.plugins.extras.ui.alpha" },
+    -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "lazyvim.plugins.extras.ui.indent-blankline" },
-    { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
     { import = "lazyvim.plugins.extras.ui.smear-cursor" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
