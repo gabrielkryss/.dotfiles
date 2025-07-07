@@ -1,6 +1,23 @@
 return {
   "folke/snacks.nvim",
+  ---@type snacks.Config
   opts = {
+    terminal = {
+      win = {
+        -- terminal
+        -- float
+        -- style = "terminal",
+        style = {
+          -- this is custom from float style
+          position = "float",
+          border = "rounded",
+          backdrop = 60,
+          height = 0.65,
+          width = 0.54,
+          zindex = 50,
+        },
+      },
+    },
     scroll = {
       enabled = false,
     },
