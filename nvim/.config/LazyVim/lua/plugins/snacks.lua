@@ -39,6 +39,7 @@ return {
           layout = "dropdown",
         },
         explorer = {
+          hidden = true,
           layout = {
             hidden = { "input" },
             auto_hide = { "input" },
