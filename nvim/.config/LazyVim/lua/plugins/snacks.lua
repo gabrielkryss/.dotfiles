@@ -1,5 +1,6 @@
 return {
   "folke/snacks.nvim",
+  priority = 1000,
   ---@type snacks.Config
   opts = {
     terminal = {
@@ -25,21 +26,35 @@ return {
       layouts = {
         -- this doesn't seem to work
         my_custom_layout = {
-          backdrop = false,
-          row = 1,
-          width = 0.4,
-          min_width = 80,
-          height = 0.8,
-          border = "none",
-          box = "vertical",
-          { win = "preview", title = "{preview}", height = 0.4, border = "rounded" },
-          {
+          layout = { -- 👈 this wrapper is required
             box = "vertical",
-            border = "rounded",
-            title = "{title} {live} {flags}",
-            title_pos = "center",
-            { win = "list", border = "none" },
-            { win = "input", height = 1, border = "bottom" },
+            backdrop = false,
+            row = 1,
+            width = 0.7,
+            min_width = 80,
+            height = 0.9,
+            border = "none",
+            {
+              win = "preview",
+              title = "{preview}",
+              height = 0.7,
+              border = "rounded",
+            },
+            {
+              box = "vertical",
+              border = "rounded",
+              title = "{title} {live} {flags}",
+              title_pos = "center",
+              {
+                win = "list",
+                border = "none",
+              },
+            },
+            {
+              win = "input",
+              height = 1,
+              border = "rounded",
+            },
           },
         },
       },
@@ -53,10 +68,13 @@ return {
       -- telescope
       -- ivy_split
       -- vscode
-      layout = "select",
+      layout = "my_custom_layout",
       sources = {
+        files = {
+          layout = "select",
+        },
         notifications = {
-          layout = "dropdown",
+          layout = "my_custom_layout",
         },
         explorer = {
           hidden = true,
