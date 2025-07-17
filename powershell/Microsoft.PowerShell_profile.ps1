@@ -88,7 +88,8 @@ if (Get-Command eza -ErrorAction SilentlyContinue) {
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-carapace _carapace | Out-String | Invoke-Expression
+carapace _carapace powershell | Out-String | Invoke-Expression
+chezmoi completion powershell | Out-String | Invoke-Expression
 # vincent, CLI for selecting terminal color themes, not available on winget yet but maybe in the future?
 # vincent _carapace | Out-String | Invoke-Expression 
 
@@ -107,9 +108,9 @@ carapace _carapace | Out-String | Invoke-Expression
 $env:LS_COLORS = (vivid generate catppuccin-mocha)
 # set carapace display style (doesn't work?)
 # Set style for values
-carapace --style 'carapace.Value=bg-bright,black,bold'
+carapace --style "carapace.Value=bg-bright,black,bold"
 # Set style for descriptions (leave empty to disable styling)
-carapace --style 'carapace.Description='
+carapace --style "carapace.Description="
 
 # Utilities
 function which ($command) {
