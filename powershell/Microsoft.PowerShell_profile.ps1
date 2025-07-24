@@ -26,6 +26,7 @@
 ## winget install Powertoys
 ## winget install Everything
 ## winget install vivid
+## winget install chezmoi
 
 # set PowerShell to UTF-8
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
