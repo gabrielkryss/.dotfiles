@@ -1,0 +1,69 @@
+" ========================
+" LazyVim-Inspired _vimrc
+" ========================
+
+" Line numbers
+set number
+set relativenumber
+
+" Leader key
+let mapleader = " "
+
+" Save file
+nnoremap <silent> <C-s> :w<CR>
+inoremap <silent> <C-s> <Esc>:w<CR>a
+
+" Buffer navigation
+nnoremap <leader>bb :ls<CR>:b<Space>
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bo :bufdo bd<CR>
+
+" Window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Window resizing
+nnoremap <C-Up>    :resize +2<CR>
+nnoremap <C-Down>  :resize -2<CR>
+nnoremap <C-Left>  :vertical resize -2<CR>
+nnoremap <C-Right> :vertical resize +2<CR>
+
+" Move lines up/down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Search navigation
+nnoremap n nzz
+nnoremap N Nzz
+
+" Scroll and center
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+
+" Clear search highlight
+nnoremap <leader><Esc> :nohlsearch<CR>
+
+" Diagnostics (mocked)
+nnoremap <leader>cd :echo "Show diagnostics"<CR>
+nnoremap <leader>cf :echo "Format code"<CR>
+
+" Git (mocked)
+nnoremap <leader>gb :echo "Git blame line"<CR>
+nnoremap <leader>gB :echo "Open in GitHub"<CR>
+
+" Tabs (mocked)
+nnoremap <leader><Tab>n :tabnew<CR>
+nnoremap <leader><Tab>d :tabclose<CR>
+nnoremap <leader><Tab>l :tabnext<CR>
+nnoremap <leader><Tab>h :tabprevious<CR>
+
+" Toggle options
+nnoremap <leader>uw :set wrap!<CR>
+nnoremap <leader>ul :set number!<CR>
+nnoremap <leader>uL :set relativenumber!<CR>

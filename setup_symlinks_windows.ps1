@@ -26,6 +26,12 @@ $symlinks = @(
         Link   = "$HOME\AppData\Local\nvim"
     },
 
+    # VsVim
+    @{
+        Target = "$dotfilesRoot\VsVim\_vimrc"
+        Link   = "$HOME\_vimrc"
+    },
+
     # # Windows Terminal, I'm okay copy pasting this one for now
     # @{
     #     Target = "$dotfilesRoot\settings.json"
