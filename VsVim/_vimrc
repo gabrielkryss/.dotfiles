@@ -10,8 +10,8 @@ set relativenumber
 let mapleader = " "
 
 " Save file
-nnoremap <silent> <C-s> :w<CR>
-inoremap <silent> <C-s> <Esc>:w<CR>a
+" nnoremap <silent> <C-s> :w<CR>
+" inoremap <silent> <C-s> <Esc>:w<CR>a
 
 " Buffer navigation
 nnoremap <leader>bb :ls<CR>:b<Space>
