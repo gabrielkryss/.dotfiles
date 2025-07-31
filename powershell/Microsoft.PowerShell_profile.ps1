@@ -119,7 +119,58 @@ function which ($command) {
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
-## This doesnt work
+function Init-VS-Vars {
+    param (
+        [string]$Arch = "x64"
+    )
+
+    if ($Arch -in @("--help", "-h", "/?")) {
+        Write-Host @"
+Init-VS-Vars [-Arch <architecture>]
+
+Sets up the Visual Studio 2022 development environment in the current PowerShell session.
+
+Available architectures:
+  x86           - 32-bit native tools
+  x64           - 64-bit native tools (default)
+  x86_amd64     - Cross-compile x64 from x86 host
+  amd64_x86     - Cross-compile x86 from x64 host
+  arm           - ARM native tools
+  arm64         - ARM64 native tools
+
+Example:
+  Init-VS-Vars -Arch x86_amd64
+"@
+        return
+    }
+
+    $vsPaths = @(
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat",
+        "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvarsall.bat",
+        "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
+    )
+
+    $vcvarsPath = $vsPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
+
+    if (-not $vcvarsPath) {
+        Write-Error "❌ Visual Studio 2022 not found. Please ensure it is installed."
+        return
+    }
+
+    Write-Host "✅ Found vcvarsall.bat at: $vcvarsPath"
+    Write-Host "📦 Setting up environment for architecture: $Arch"
+
+    cmd /c "`"$vcvarsPath`" $Arch && set" | ForEach-Object {
+        if ($_ -match "^(.*?)=(.*)$") {
+            [System.Environment]::SetEnvironmentVariable($matches[1], $matches[2], "Process")
+        }
+    }
+
+    Write-Host "✅ Environment variables set for Visual Studio 2022 ($Arch)."
+}
+
+
+## This doesnt work?
 # Get the SystemParametersInfo API function
 $SystemParametersInfo = Add-Type -MemberDefinition @"
 [DllImport("user32.dll", SetLastError = true)]
