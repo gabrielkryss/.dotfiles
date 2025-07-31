@@ -119,7 +119,7 @@ function which ($command) {
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
-function Init-VS-Vars {
+function Set-VS-Vars {
     param (
         [string]$Arch = "x64"
     )
@@ -128,7 +128,7 @@ function Init-VS-Vars {
         Write-Host @"
 Init-VS-Vars [-Arch <architecture>]
 
-Sets up the Visual Studio 2022 development environment in the current PowerShell session.
+Sets up the Visual Studio 2022 development environment in the current PowerShell 7 session using vsdevcmd.bat.
 
 Available architectures:
   x86           - 32-bit native tools
@@ -145,22 +145,22 @@ Example:
     }
 
     $vsPaths = @(
-        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat",
-        "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvarsall.bat",
-        "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\vsdevcmd.bat",
+        "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\vsdevcmd.bat",
+        "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\vsdevcmd.bat"
     )
 
-    $vcvarsPath = $vsPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
+    $vsdevcmd = $vsPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
 
-    if (-not $vcvarsPath) {
-        Write-Error "❌ Visual Studio 2022 not found. Please ensure it is installed."
+    if (-not $vsdevcmd) {
+        Write-Error "❌ vsdevcmd.bat not found. Please ensure Visual Studio 2022 is installed."
         return
     }
 
-    Write-Host "✅ Found vcvarsall.bat at: $vcvarsPath"
+    Write-Host "✅ Found vsdevcmd.bat at: $vsdevcmd"
     Write-Host "📦 Setting up environment for architecture: $Arch"
 
-    cmd /c "`"$vcvarsPath`" $Arch && set" | ForEach-Object {
+    cmd /c "`"$vsdevcmd`" -arch=$Arch -no_logo && set" | ForEach-Object {
         if ($_ -match "^(.*?)=(.*)$") {
             [System.Environment]::SetEnvironmentVariable($matches[1], $matches[2], "Process")
         }
@@ -168,7 +168,6 @@ Example:
 
     Write-Host "✅ Environment variables set for Visual Studio 2022 ($Arch)."
 }
-
 
 ## This doesnt work?
 # Get the SystemParametersInfo API function
