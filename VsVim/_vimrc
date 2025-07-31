@@ -30,6 +30,10 @@ nnoremap <C-Down>  :resize -2<CR>
 nnoremap <C-Left>  :vertical resize -2<CR>
 nnoremap <C-Right> :vertical resize +2<CR>
 
+" Tab navigation
+nnoremap <S-h> :vsc Window.PreviousTab<CR>
+nnoremap <S-l> :vsc Window.NextTab<CR>
+
 " Move lines up/down
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -48,6 +52,12 @@ nnoremap <C-d> <C-d>zz
 
 " Clear search highlight
 nnoremap <leader><Esc> :nohlsearch<CR>
+
+" Find files
+nnoremap <leader><leader> :vsc Edit.GoToFile<CR>
+
+" Toggle Solution Explorer
+nnoremap <leader>e :vsc View.SolutionExplorer<CR>
 
 " Diagnostics (mocked)
 nnoremap <leader>cd :echo "Show diagnostics"<CR>
