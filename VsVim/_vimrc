@@ -6,8 +6,19 @@
 set number
 set relativenumber
 
+" Clipboard
+set clipboard=unnamed
+
 " Leader key
 let mapleader = " "
+
+" Highlight search
+set hlsearch
+set incsearch
+nnoremap <Esc> <Esc>:nohlsearch<CR>
+
+" Esc (So I can exit peeks and clear highlight searches with C-[)
+nnoremap <C-[> <Esc>:nohlsearch<CR>
 
 " Save file
 " nnoremap <silent> <C-s> :w<CR>
@@ -58,6 +69,9 @@ nnoremap <leader><leader> :vsc Edit.GoToFile<CR>
 
 " Toggle Solution Explorer
 nnoremap <leader>e :vsc View.SolutionExplorer<CR>
+
+" Peek Definition
+nnoremap <S-k> :vsc Edit.PeekDefinition<CR>
 
 " Diagnostics (mocked)
 nnoremap <leader>cd :echo "Show diagnostics"<CR>
