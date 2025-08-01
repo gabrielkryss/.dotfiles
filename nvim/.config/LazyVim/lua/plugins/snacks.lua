@@ -73,6 +73,9 @@ return {
         files = {
           layout = "select",
         },
+        command_history = {
+          layout = "select",
+        },
         notifications = {
           layout = "my_custom_layout",
         },
