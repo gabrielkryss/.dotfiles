@@ -70,8 +70,38 @@ nnoremap <leader><leader> :vsc Edit.GoToFile<CR>
 " Toggle Solution Explorer
 nnoremap <leader>e :vsc View.SolutionExplorer<CR>
 
-" Peek Definition
-nnoremap <S-k> :vsc Edit.PeekDefinition<CR>
+" Go to Definition
+nnoremap gd :vsc Edit.GoToDefinition<CR>
+
+" Go to Implementation
+nnoremap gi :vsc Edit.GoToImplementation<CR>
+
+" Go to References
+nnoremap gr :vsc Edit.FindAllReferences<CR>
+
+" Peek Definition (like hovering or inline preview)
+nnoremap gp :vsc Edit.PeekDefinition<CR>
+
+" Quick info
+nnoremap <S-k> :vsc edit.quickinfo<CR>
+
+" Refactoring
+vnoremap <leader>rs :vsc Refactor.Rename<CR>
+
+" Toggle fold under cursor
+nnoremap za za
+
+" Open all folds
+nnoremap zR zR
+
+" Close all folds
+nnoremap zM zM
+
+" Open one fold level
+nnoremap zo zo
+
+" Close one fold level
+nnoremap zc zc
 
 " Diagnostics (mocked)
 nnoremap <leader>cd :echo "Show diagnostics"<CR>
