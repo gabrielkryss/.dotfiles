@@ -52,6 +52,8 @@
 $ENV:STARSHIP_CONFIG = "$HOME\.config\starship\starship.toml"
 $ENV:STARSHIP_CACHE = "$HOME\AppData\Local\Temp"
 
+$env:EZA_CONFIG_DIR = "$env:USERPROFILE\.config\eza"
+
 Import-Module -Name Terminal-Icons
 
 # # PSReadLine
@@ -106,7 +108,7 @@ chezmoi completion powershell | Out-String | Invoke-Expression
 # - everforest-dark-hard
 # - everforest-dark-medium
 # - everforest-dark-soft
-$env:LS_COLORS = (vivid generate catppuccin-mocha)
+# $env:LS_COLORS = (vivid generate catppuccin-mocha)
 # set carapace display style (doesn't work?)
 # Set style for values
 carapace --style "carapace.Value=bg-bright,black,bold"
@@ -119,7 +121,7 @@ function which ($command) {
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
-function Set-VS-Vars {
+function Init-VS-Vars {
     param (
         [string]$Arch = "x64"
     )
@@ -167,6 +169,34 @@ Example:
     }
 
     Write-Host "✅ Environment variables set for Visual Studio 2022 ($Arch)."
+}
+
+function Init-Debug-Env {
+    param (
+        [string]$SymbolCache = "C:\SymbolsCache",
+        [string]$SymbolServer = "https://msdl.microsoft.com/download/symbols"
+    )
+
+    if ($SymbolCache -in @("--help", "-h", "/?")) {
+        Write-Host @"
+Set-DebugEnv [-SymbolCache <path>] [-SymbolServer <url>]
+
+Initializes the Windows debugging environment by setting _NT_SYMBOL_PATH
+for the current PowerShell session.
+
+Parameters:
+  -SymbolCache   Path to local symbol cache (default: C:\SymbolsCache)
+  -SymbolServer  URL to symbol server (default: Microsoft Symbol Server)
+
+Example:
+  Set-DebugEnv -SymbolCache 'D:\Symbols' -SymbolServer 'https://custom.symbol.server'
+"@
+        return
+    }
+
+    $env:_NT_SYMBOL_PATH = "srv*$SymbolCache*$SymbolServer"
+    Write-Host "✅ _NT_SYMBOL_PATH set to:"
+    Write-Host "`"$env:_NT_SYMBOL_PATH`""
 }
 
 ## This doesnt work?
