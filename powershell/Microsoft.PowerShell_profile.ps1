@@ -4,6 +4,7 @@
 ## Install Commands
 ## Install-Module -Name Terminal-Icons -Repository PSGallery
 ## Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
+## Install-Module -Name PSFzf -Scope CurrentUser -Force -AllowClobber
 ## Install-Module -Name z -Force
 ## Install-Module -Name ZLocation -scope currentUser
 ## winget install fzf OR Install-Module -Name PSFzf -scope currentUser
@@ -57,19 +58,33 @@ $env:EZA_CONFIG_DIR = "$env:USERPROFILE\.config\eza"
 Import-Module -Name Terminal-Icons
 
 # # PSReadLine
-# Set Some Option for PSReadLine to show the history of our typed commands
-# Set-PSReadLineOption -BellStyle None
-# Set-PSReadLineOption -PredictionSource History 
-# Set-PSReadLineOption -PredictionViewStyle ListView 
-# Set-PSReadLineOption -EditMode Emacs 
-
-# Installation lines:
+# # Set Some Option for PSReadLine to show the history of our typed commands
+Set-PSReadLineOption -BellStyle None
+Set-PSReadLineOption -PredictionSource History 
+Set-PSReadLineOption -PredictionViewStyle ListView 
+Set-PSReadLineOption -EditMode Vi # or Emacs, Windows, Vi
+# Ctrl+f to fuzzy cd into a directory
+Set-PSReadLineKeyHandler -Chord ctrl+f -ScriptBlock {
+    fd --type d | fzf | Set-Location
+}
+# Ctrl+g to fuzzy open a file with bat preview
+Set-PSReadLineKeyHandler -Chord ctrl+g -ScriptBlock {
+    fd --type f | fzf --preview 'bat --style=numbers --color=always {}' | Invoke-Item
+}
+# Ctrl+s to fuzzy search file contents with ripgrep
+Set-PSReadLineKeyHandler -Chord ctrl+s -ScriptBlock {
+    rg --files | fzf --preview 'bat --style=numbers --color=always {}' | Invoke-Item
+}
+Set-PSReadLineKeyHandler -Chord Ctrl+n -Function NextSuggestion
+Set-PSReadLineKeyHandler -Chord Ctrl+p -Function PreviousSuggestion
 
 # # Fzf
-# Import-Module PSFzf
-# Enable-PsFzfAliases
-# Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
-# Set-PSReadLineKeyHandler -Chord ctrl+f -ScriptBlock { fd | Invoke-fzf | Set-Location }
+if (Get-Module -ListAvailable -Name PSFzf) {
+  Import-Module PSFzf
+  Enable-PsFzfAliases
+  Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' `
+                  -PSReadlineChordReverseHistory 'Ctrl+r'
+}
 
 # ZLocation
 # Import-Module ZLocation
