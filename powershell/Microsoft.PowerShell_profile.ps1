@@ -60,9 +60,11 @@ Import-Module -Name Terminal-Icons
 # # PSReadLine
 # # Set Some Option for PSReadLine to show the history of our typed commands
 Set-PSReadLineOption -BellStyle None
-Set-PSReadLineOption -PredictionSource History 
-Set-PSReadLineOption -PredictionViewStyle ListView 
+Set-PSReadLineOption -PredictionSource History,Plugin
+Set-PSReadLineOption -PredictionViewStyle ListView # Inline
 Set-PSReadLineOption -EditMode Vi # or Emacs, Windows, Vi
+Set-PSReadLineOption -HistoryNoDuplicates
+Set-PSReadLineOption -MaximumHistoryCount 4096
 # Ctrl+f to fuzzy cd into a directory
 Set-PSReadLineKeyHandler -Chord ctrl+f -ScriptBlock {
     fd --type d | fzf | Set-Location
