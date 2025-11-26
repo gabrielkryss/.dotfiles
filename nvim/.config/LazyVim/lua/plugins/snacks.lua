@@ -24,7 +24,6 @@ return {
     },
     picker = {
       layouts = {
-        -- this doesn't seem to work
         my_custom_layout = {
           layout = { -- 👈 this wrapper is required
             box = "vertical",
@@ -56,6 +55,9 @@ return {
               border = "rounded",
             },
           },
+        },
+        custom_ivy_plit_layout = {
+          preset = "ivy_split", -- start from ivy_split
         },
       },
       -- bottom
@@ -89,6 +91,9 @@ return {
             },
           },
         },
+        git_blame = { layout = "sidebar" },
+        git_log_line = { layout = "ivy_split" },
+        git_log_files = { layout = "sidebar" },
       },
     },
   },
