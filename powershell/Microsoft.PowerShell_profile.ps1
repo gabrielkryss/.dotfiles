@@ -55,6 +55,8 @@ $ENV:STARSHIP_CACHE = "$HOME\AppData\Local\Temp"
 
 $env:EZA_CONFIG_DIR = "$env:USERPROFILE\.config\eza"
 
+$env:_NT_SYMBOL_PATH = "srv*C:\symbols*https://msdl.microsoft.com/download/symbols"
+
 Import-Module -Name Terminal-Icons
 
 # # PSReadLine
