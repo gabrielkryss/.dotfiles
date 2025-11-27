@@ -56,10 +56,61 @@ return {
             },
           },
         },
+        my_custom_layout_2 = {
+          layout = {
+            box = "vertical",
+            backdrop = false,
+            row = 0,
+            col = 0,
+            width = vim.o.columns,
+            height = vim.o.lines,
+            min_width = 0,
+            border = "none",
+            {
+              win = "preview",
+              title = "{preview}",
+              height = 0.7,
+              border = "rounded",
+            },
+            {
+              box = "vertical",
+              border = "rounded",
+              height = 0.257,
+              title = "{title} {live} {flags}",
+              title_pos = "center",
+              {
+                win = "list",
+                border = "none",
+              },
+            },
+            {
+              win = "input",
+              height = 1,
+              border = "rounded",
+            },
+          },
+        },
         custom_ivy_plit_layout = {
           preset = "ivy_split", -- start from ivy_split
+          layout = {
+            box = "vertical",
+            backdrop = false,
+            width = 0,
+            height = 0.3,
+            position = "bottom",
+            border = "top",
+            title = " {title} {live} {flags}",
+            title_pos = "center",
+            {
+              box = "horizontal",
+              { win = "list", border = "rounded", align = "bottom" },
+              { win = "preview", border = "rounded", title = "{preview}", width = 0.6 },
+            },
+            { win = "input", height = 1, border = "rounded" },
+          },
         },
       },
+      -- ivy
       -- bottom
       -- top
       -- telescope
@@ -74,6 +125,7 @@ return {
       sources = {
         files = {
           layout = "select",
+          hidden = true,
         },
         command_history = {
           layout = "select",
@@ -85,15 +137,16 @@ return {
           hidden = true,
           layout = {
             hidden = { "input" },
-            auto_hide = { "input" },
             layout = {
               position = "right",
             },
           },
         },
-        git_blame = { layout = "sidebar" },
-        git_log_line = { layout = "ivy_split" },
-        git_log_files = { layout = "sidebar" },
+        grep = { layout = "my_custom_layout_2" },
+        git_grep = { layout = "my_custom_layout_2" },
+        colorschemes = { layout = "my_custom_layout_2" },
+        git_log_line = { layout = "custom_ivy_plit_layout" },
+        git_log_files = { layout = "custom_ivy_plit_layout" },
       },
     },
   },
