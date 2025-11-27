@@ -1,84 +1,57 @@
-## NOTE: paste the following line into $PROFILE.CurrentUserCurrentHost (use nvim to open that file), including the dot.
-## . $env:USERPROFILE\.config\powershell\user_profile.ps1
-
 ## Install Commands
 ## Install-Module -Name Terminal-Icons -Repository PSGallery
 ## Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
+## Install-Module PSReadLinePrediction -Force
 ## Install-Module -Name PSFzf -Scope CurrentUser -Force -AllowClobber
-## Install-Module -Name z -Force
 ## Install-Module -Name ZLocation -scope currentUser
-## winget install fzf OR Install-Module -Name PSFzf -scope currentUser
-## winget install fzf
-## winget install fd
-## winget install starship
-## winget install ripgrep
-## winget install GlazeWM
-## winget install carapace
-## winget install bat
-## winget install bottom
-## winget install fastfetch
-## winget install lazygit
-## winget install zoxide
-## winget install eza
-## winget install starship
-## winget install Neovim
-## winget install Git
-## winget install Obsidian
-## winget install Powertoys
-## winget install Everything
-## winget install vivid
-## winget install chezmoi
+
+# Set powershell session to RemoteSigned
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
 
 # set PowerShell to UTF-8
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
-# Import-Module posh-git
-# themes link ref: https://ohmyposh.dev/docs/themes
-# - star
-# - spaceship
-# - gruvbox
-# - hotstick.minimal
-# - zash
-# - tonybaloney
-# - the-unnamed
-# - neko
-# - multiverse-neon
-# - lambdageneration
-# - velvet
-# - xtoys
-# $omp_config = Join-Path $PSScriptRoot ".\themes\xtoys.omp.json" #  local oh-my-posh (omp) config file e.g. ".\takuya.omp.json"
-# $omp_config = "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/star.omp.json" # remote omp config
-# oh-my-posh --init --shell pwsh --config $omp_config | Invoke-Expression
-
+# Starship
 $ENV:STARSHIP_CONFIG = "$HOME\.config\starship\starship.toml"
 $ENV:STARSHIP_CACHE = "$HOME\AppData\Local\Temp"
 
 $env:EZA_CONFIG_DIR = "$env:USERPROFILE\.config\eza"
 
+# Windows Debugger Symbols
 $env:_NT_SYMBOL_PATH = "srv*C:\symbols*https://msdl.microsoft.com/download/symbols"
 
 Import-Module -Name Terminal-Icons
 
-# # PSReadLine
-# # Set Some Option for PSReadLine to show the history of our typed commands
+# PSReadLine
+# Set Some Option for PSReadLine to show the history of our typed commands
 Set-PSReadLineOption -BellStyle None
 Set-PSReadLineOption -PredictionSource History,Plugin
 Set-PSReadLineOption -PredictionViewStyle ListView # Inline
 Set-PSReadLineOption -EditMode Vi # or Emacs, Windows, Vi
 Set-PSReadLineOption -HistoryNoDuplicates
 Set-PSReadLineOption -MaximumHistoryCount 4096
-# Ctrl+f to fuzzy cd into a directory
-Set-PSReadLineKeyHandler -Chord ctrl+f -ScriptBlock {
-    fd --type d | fzf | Set-Location
+
+# Alt+c → fuzzy cd into a directory
+Set-PSReadLineKeyHandler -Chord Ctrl+f -ScriptBlock {
+    if (Get-Command z -ErrorAction SilentlyContinue) {
+        # If zoxide is installed, use its 'zi' subcommand
+        zi
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+    } else {
+        fd --type d | fzf | Set-Location
+    }
 }
-# Ctrl+g to fuzzy open a file with bat preview
-Set-PSReadLineKeyHandler -Chord ctrl+g -ScriptBlock {
-    fd --type f | fzf --preview 'bat --style=numbers --color=always {}' | Invoke-Item
+# Ctrl+s → grep search inside files
+Set-PSReadLineKeyHandler -Chord Ctrl+s -ScriptBlock {
+    $pattern = Read-Host "Search pattern"
+    rg --no-heading --line-number $pattern |
+        fzf --delimiter : --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' |
+        ForEach-Object {
+            $parts = $_ -split ":"
+            nvim $parts[0]
+        }
 }
-# Ctrl+s to fuzzy search file contents with ripgrep
-Set-PSReadLineKeyHandler -Chord ctrl+s -ScriptBlock {
-    rg --files | fzf --preview 'bat --style=numbers --color=always {}' | Invoke-Item
-}
+
 Set-PSReadLineKeyHandler -Chord Ctrl+n -Function NextSuggestion
 Set-PSReadLineKeyHandler -Chord Ctrl+p -Function PreviousSuggestion
 
@@ -90,21 +63,110 @@ if (Get-Module -ListAvailable -Name PSFzf) {
                   -PSReadlineChordReverseHistory 'Ctrl+r'
 }
 
+# -------------------------------
+# Gruvbox Theme
+# -------------------------------
+# Set-PSReadLineOption -Colors @{
+#     Command   = 'DarkYellow'
+#     Parameter = 'DarkCyan'
+#     String    = 'DarkGreen'
+#     Operator  = 'DarkRed'
+#     Variable  = 'Yellow'
+#     Number    = 'DarkMagenta'
+#     Member    = 'Gray'
+#     Type      = 'DarkGray'
+#     Comment   = 'DarkBlue'
+# }
+
+# -------------------------------
+# Everforest Theme
+# -------------------------------
+# Set-PSReadLineOption -Colors @{
+#     Command   = 'Green'
+#     Parameter = 'Cyan'
+#     String    = 'DarkGreen'
+#     Operator  = 'DarkYellow'
+#     Variable  = 'White'
+#     Number    = 'DarkCyan'
+#     Member    = 'DarkGray'
+#     Type      = 'DarkGreen'
+#     Comment   = 'DarkMagenta'
+# }
+
+# -------------------------------
+# Catppuccin Mocha Theme
+# -------------------------------
+# Set-PSReadLineOption -Colors @{
+#     Command   = 'Magenta'
+#     Parameter = 'Cyan'
+#     String    = 'Green'
+#     Operator  = 'Yellow'
+#     Variable  = 'White'
+#     Number    = 'DarkCyan'
+#     Member    = 'DarkMagenta'
+#     Type      = 'Gray'
+#     Comment   = 'DarkGray'
+# }
+
+# -------------------------------
+# Tokyo Night Theme
+# -------------------------------
+# Set-PSReadLineOption -Colors @{
+#     Command   = 'Blue'
+#     Parameter = 'Cyan'
+#     String    = 'Green'
+#     Operator  = 'Magenta'
+#     Variable  = 'White'
+#     Number    = 'DarkBlue'
+#     Member    = 'DarkMagenta'
+#     Type      = 'DarkCyan'
+#     Comment   = 'DarkGray'
+# }
+
+# -------------------------------
+# Rosé Pine Theme
+# -------------------------------
+# Set-PSReadLineOption -Colors @{
+#     Command   = 'Magenta'
+#     Parameter = 'DarkCyan'
+#     String    = 'DarkGreen'
+#     Operator  = 'DarkMagenta'
+#     Variable  = 'White'
+#     Number    = 'DarkYellow'
+#     Member    = 'Gray'
+#     Type      = 'DarkGray'
+#     Comment   = 'DarkBlue'
+# }
+
+# # Fzf
+# Import-Module PSFzf
+# Set-PsFzfOption -PSReadlineIntegration -GitSupport
+# Enable-PsFzfAliases
+# Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+# Set-PSReadLineKeyHandler -Chord ctrl+f -ScriptBlock { fd | Invoke-fzf | Set-Location }
+
 # ZLocation
 # Import-Module ZLocation
 
 # Aliases
-Set-Alias grep findstr
-Set-Alias vim nvim 
-Set-Alias ll ls 
-
-# Checked if eza is installed
-if (Get-Command eza -ErrorAction SilentlyContinue) {
-  function myEzaList { param([string]$Path = ".")
-    eza -1albBghiS --icons=auto --color=auto --color-scale=all --color-scale-mode=gradient --group-directories-first --hyperlink --total-size $Path
-  }
-  Set-Alias ls myEzaList
+# Check if ripgrep (rg) is NOT installed
+if (-not (Get-Command rg -ErrorAction SilentlyContinue)) {
+    Write-Host "❌ ripgrep (rg) is NOT installed. Please install it via winget:" -ForegroundColor Red
+    Write-Host "winget install BurntSushi.ripgrep"
 }
+Set-Alias grep rg
+Set-Alias findstr rg
+Set-Alias ll ls
+
+# Check if eza is installed
+if (-not (Get-Command eza -ErrorAction SilentlyContinue)) {
+    Write-Host "❌ eza is NOT installed. Please install it via winget:" -ForegroundColor Red
+    Write-Host "winget install eza"
+}
+function myEzaList { param([string]$Path = ".")
+  eza -1albBghiS --icons=auto --color=auto --color-scale=all --color-scale-mode=gradient --group-directories-first --hyperlink --total-size $Path
+}
+Set-Alias ls myEzaList
 
 # Carapace CLI completion engine
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
@@ -188,34 +250,6 @@ Example:
     }
 
     Write-Host "✅ Environment variables set for Visual Studio 2022 ($Arch)."
-}
-
-function Init-Debug-Env {
-    param (
-        [string]$SymbolCache = "C:\SymbolsCache",
-        [string]$SymbolServer = "https://msdl.microsoft.com/download/symbols"
-    )
-
-    if ($SymbolCache -in @("--help", "-h", "/?")) {
-        Write-Host @"
-Set-DebugEnv [-SymbolCache <path>] [-SymbolServer <url>]
-
-Initializes the Windows debugging environment by setting _NT_SYMBOL_PATH
-for the current PowerShell session.
-
-Parameters:
-  -SymbolCache   Path to local symbol cache (default: C:\SymbolsCache)
-  -SymbolServer  URL to symbol server (default: Microsoft Symbol Server)
-
-Example:
-  Set-DebugEnv -SymbolCache 'D:\Symbols' -SymbolServer 'https://custom.symbol.server'
-"@
-        return
-    }
-
-    $env:_NT_SYMBOL_PATH = "srv*$SymbolCache*$SymbolServer"
-    Write-Host "✅ _NT_SYMBOL_PATH set to:"
-    Write-Host "`"$env:_NT_SYMBOL_PATH`""
 }
 
 ## This doesnt work?
