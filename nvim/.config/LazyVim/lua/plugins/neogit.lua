@@ -4,6 +4,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim", -- Required by Neogit
     "folke/snacks.nvim", -- Snacks integration
+    "sindrets/diffview.nvim", -- Diff integration
   },
   cmd = "Neogit",
   keys = {
@@ -14,6 +15,7 @@ return {
       integrations = {
         telescope = false, -- Disable Telescope picker
         fzf_lua = false, -- Disable FZF picker
+        diffview = true, -- enable Diffview integration
         snacks = true, -- Enable Snacks picker
       },
     })
