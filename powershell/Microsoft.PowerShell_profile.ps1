@@ -55,7 +55,7 @@ Set-PSReadLineKeyHandler -Chord Ctrl+s -ScriptBlock {
 Set-PSReadLineKeyHandler -Chord Ctrl+n -Function NextSuggestion
 Set-PSReadLineKeyHandler -Chord Ctrl+p -Function PreviousSuggestion
 
-# # Fzf
+# Fzf
 if (Get-Module -ListAvailable -Name PSFzf) {
   Import-Module PSFzf
   Enable-PsFzfAliases
@@ -138,16 +138,6 @@ if (Get-Module -ListAvailable -Name PSFzf) {
 #     Comment   = 'DarkBlue'
 # }
 
-# # Fzf
-# Import-Module PSFzf
-# Set-PsFzfOption -PSReadlineIntegration -GitSupport
-# Enable-PsFzfAliases
-# Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
-# Set-PSReadLineKeyHandler -Chord ctrl+f -ScriptBlock { fd | Invoke-fzf | Set-Location }
-
-# ZLocation
-# Import-Module ZLocation
-
 # Aliases
 # Check if ripgrep (rg) is NOT installed
 if (-not (Get-Command rg -ErrorAction SilentlyContinue)) {
@@ -197,6 +187,7 @@ carapace --style "carapace.Value=bg-bright,black,bold"
 carapace --style "carapace.Description="
 
 # Utilities
+Set-Alias which "$HOME\Documents\PowerShell\Scripts\which.ps1"
 function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
@@ -267,6 +258,9 @@ public static extern bool SystemParametersInfo(
 function cw ($PathToImg) {
   $SystemParametersInfo::SystemParametersInfo(20, 0, $PathToImg, 0x01)
 }
+
+Set-Alias clang-build "$HOME\Documents\PowerShell\Scripts\clang-build.ps1"
+Set-Alias Download-Windows-Debug-Symbols "$HOME\Documents\PowerShell\Scripts\download-windows-debug-symbols.ps1"
 
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
