@@ -5,10 +5,10 @@ return {
     "nvim-lua/plenary.nvim", -- Required by Neogit
     "folke/snacks.nvim", -- Snacks integration
   },
-  -- cmd = "Neogit",
-  -- keys = {
-  --   { "<leader>gg", "<cmd>Neogit<CR>", desc = "Open Neogit" },
-  -- },
+  cmd = "Neogit",
+  keys = {
+    { "<leader>gn", "<cmd>Neogit<CR>", desc = "Open Neogit" },
+  },
   config = function()
     require("neogit").setup({
       integrations = {
