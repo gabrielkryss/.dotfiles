@@ -17,10 +17,15 @@ $ENV:STARSHIP_CACHE = "$HOME\AppData\Local\Temp"
 
 $env:EZA_CONFIG_DIR = "$env:USERPROFILE\.config\eza"
 
+# Open Code
+$env:OPENCODE_CONFIG_DIR = "$env:USERPROFILE\.config\opencode"
+
 # Windows Debugger Symbols
 $env:_NT_SYMBOL_PATH = "srv*C:\symbols*https://msdl.microsoft.com/download/symbols"
 
-Import-Module -Name Terminal-Icons
+if (Get-Module -ListAvailable -Name Terminal-Icons) {
+  Import-Module -Name Terminal-Icons
+}
 
 # PSReadLine
 # Set Some Option for PSReadLine to show the history of our typed commands
@@ -159,35 +164,86 @@ function myEzaList { param([string]$Path = ".")
 Set-Alias ls myEzaList
 
 # Carapace CLI completion engine
+carapace _carapace powershell | Out-String | Invoke-Expression
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-carapace _carapace powershell | Out-String | Invoke-Expression
-chezmoi completion powershell | Out-String | Invoke-Expression
-# vincent, CLI for selecting terminal color themes, not available on winget yet but maybe in the future?
-# vincent _carapace | Out-String | Invoke-Expression 
-
-# optional
-# (all options)link: https://gogh-co.github.io/Gogh/
-# - catppuccin-mocha
-# - catppuccin-macchiato
-# - catppuccin-frappé
-# - gruvbox-dark
-# - gruvbox-material-dark
-# - rosé-pine
-# - rosé-pine-moon
-# - everforest-dark-hard
-# - everforest-dark-medium
-# - everforest-dark-soft
-# $env:LS_COLORS = (vivid generate catppuccin-mocha)
-# set carapace display style (doesn't work?)
+# Optional: set Carapace display styles (cheap)
 # Set style for values
 carapace --style "carapace.Value=bg-bright,black,bold"
 # Set style for descriptions (leave empty to disable styling)
 carapace --style "carapace.Description="
+# ------------------------------------------------------------
+# Carapace: lazy-loaded completions (single-file integration)
+# ------------------------------------------------------------
+# One-time injection guard
+function Initialize-CarapaceCompletion {
+  if ($script:CarapaceCoreReady) { return }
+  try {
+    # Wire Carapace’s PowerShell integration once
+    carapace _carapace powershell | Out-String | Invoke-Expression
+    $script:CarapaceCoreReady = $true
+  } catch {
+    Write-Verbose "Carapace init failed: $_"
+  }
+}
+
+# Register a lightweight stub that loads a command’s completion on first Tab
+function Register-LazyCarapaceCompleter {
+  param([Parameter(Mandatory)][string]$CommandName)
+
+  if (-not (Get-Command $CommandName -ErrorAction SilentlyContinue)) { return }
+
+  $flagName = "${CommandName}CarapaceLoaded"
+
+  Register-ArgumentCompleter -CommandName $CommandName -ScriptBlock {
+    param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
+
+    # Inject Carapace core once
+    Initialize-CarapaceCompletion
+
+    # Wire the specific command’s completion the first time Tab is pressed
+    if (-not (Get-Variable -Name $flagName -Scope Script -ErrorAction SilentlyContinue)) {
+      try {
+        carapace $CommandName powershell | Out-String | Invoke-Expression
+        Set-Variable -Name $flagName -Scope Script -Value $true
+      } catch {
+        Write-Verbose "Failed to load carapace completion for '$CommandName': $_"
+      }
+    }
+
+    # Stub returns no items; real completer takes effect on the next Tab
+    [System.Management.Automation.CompletionResult[]]@()
+  }
+}
+
+# Register stubs for commands you use (adjust list as desired)
+@(
+  'git'
+  'gh'
+  'chezmoi'
+  'cargo'
+  'go'
+  'python'
+  'pip'
+  'chezmoi'
+  'fastfetch'
+  'jq'
+  'eza'
+  'rg'
+  'bat'
+  'batman'
+  'just'
+  'scp'
+  'typst'
+  'wezterm'
+  'jj'
+  'ollama'
+) | ForEach-Object {
+  Register-LazyCarapaceCompleter -CommandName $_
+}
 
 # Utilities
-Set-Alias which "$HOME\Documents\PowerShell\Scripts\which.ps1"
 function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
@@ -243,20 +299,14 @@ Example:
     Write-Host "✅ Environment variables set for Visual Studio 2022 ($Arch)."
 }
 
-## This doesnt work?
-# Get the SystemParametersInfo API function
-$SystemParametersInfo = Add-Type -MemberDefinition @"
+function Set-Wallpaper { param($PathToImg)
+  if (-not $script:Win32SPI) {
+    $script:Win32SPI = Add-Type -MemberDefinition @"
 [DllImport("user32.dll", SetLastError = true)]
-public static extern bool SystemParametersInfo(
-  uint uiAction,
-  uint uiParam,
-  string pvParam,
-  uint fWinIni
-);
+public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, string pvParam, uint fWinIni);
 "@ -Name "NativeMethods" -Namespace Win32 -PassThru
-# function to change wallapaper
-function cw ($PathToImg) {
-  $SystemParametersInfo::SystemParametersInfo(20, 0, $PathToImg, 0x01)
+  }
+  [Win32.NativeMethods]::SystemParametersInfo(20, 0, $PathToImg, 0x01) | Out-Null
 }
 
 Set-Alias clang-build "$HOME\Documents\PowerShell\Scripts\clang-build.ps1"

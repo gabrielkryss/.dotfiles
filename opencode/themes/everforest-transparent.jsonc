@@ -1,0 +1,70 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "ef_bg0": "#2b3339",
+    "ef_bg1": "#323c41",
+    "ef_bg2": "#3a4248",
+    "ef_fg": "#d3c6aa",
+    "ef_green": "#a7c080",
+    "ef_blue": "#7fbbb3",
+    "ef_yellow": "#dbbc7f",
+    "ef_red": "#e67e80",
+    "ef_orange": "#e69875",
+    "ef_purple": "#d699b6",
+    "ef_gray": "#859289"
+  },
+  "theme": {
+    "primary": {
+      "dark": "ef_blue",
+      "light": "ef_green"
+    },
+    "secondary": {
+      "dark": "ef_yellow",
+      "light": "ef_yellow"
+    },
+    "accent": {
+      "dark": "ef_green",
+      "light": "ef_green"
+    },
+    "error": {
+      "dark": "ef_red",
+      "light": "ef_red"
+    },
+    "warning": {
+      "dark": "ef_orange",
+      "light": "ef_orange"
+    },
+    "success": {
+      "dark": "ef_green",
+      "light": "ef_green"
+    },
+    "info": {
+      "dark": "ef_blue",
+      "light": "ef_blue"
+    },
+    "text": {
+      "dark": "ef_fg",
+      "light": "ef_bg0"
+    },
+    "textMuted": {
+      "dark": "ef_gray",
+      "light": "ef_bg2"
+    },
+    "background": {
+      "dark": "none",
+      "light": "none"
+    },
+    "backgroundPanel": {
+      "dark": "ef_bg1",
+      "light": "ef_bg1"
+    },
+    "backgroundElement": {
+      "dark": "ef_bg2",
+      "light": "ef_bg2"
+    },
+    "border": {
+      "dark": "ef_gray",
+      "light": "ef_gray"
+    }
+  }
+}
