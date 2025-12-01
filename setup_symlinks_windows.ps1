@@ -52,8 +52,8 @@ $symlinks = @(
 
     # WezTerm
     @{
-        Target = "$dotfilesRoot\wezterm\.wezterm.lua"
-        Link   = "$HOME\.wezterm.lua"
+        Target = "$dotfilesRoot\wezterm"
+        Link   = "$HOME\.config\wezterm"
     },
 
     # Starship
@@ -66,6 +66,12 @@ $symlinks = @(
     @{
         Target = "$dotfilesRoot\bash\.bashrc"
         Link   = "$HOME\.bashrc"
+    },
+
+    # Opencode
+    @{
+        Target = "$dotfilesRoot\opencode"
+        Link   = "$HOME\.config\opencode"
     }
 
     # # Fish
