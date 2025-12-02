@@ -129,7 +129,7 @@ require("lazy").setup({
 
     -- Utilities
     { import = "lazyvim.plugins.extras.util.chezmoi" },
-    -- { import = "lazyvim.plugins.extras.util.gh" },
+    { import = "lazyvim.plugins.extras.util.gh" },
     -- { import = "lazyvim.plugins.extras.util.gitui" },
     -- { import = "lazyvim.plugins.extras.util.project" },
     { import = "lazyvim.plugins.extras.util.startuptime" },
