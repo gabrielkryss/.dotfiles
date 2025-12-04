@@ -33,7 +33,7 @@ config.cursor_blink_ease_out = "EaseOut"
 -- Cursor blink rate in milliseconds
 config.cursor_blink_rate = 650
 -- Graphics
-config.front_end = "WebGpu" or "Software"
+config.front_end = "WebGpu" -- "WebGpu" or OpenGL or "Software"
 
 -- Colorschemes
 local selected_colorscheme = "Everforest Custom"

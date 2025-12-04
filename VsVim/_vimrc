@@ -83,33 +83,21 @@ nnoremap gr :vsc Edit.FindAllReferences<CR>
 nnoremap gp :vsc Edit.PeekDefinition<CR>
 
 " Quick info
-nnoremap <S-k> :vsc edit.quickinfo<CR>
+nnoremap <S-k> :vsc Edit.QuickInfo<CR>
 
 " Refactoring
 vnoremap <leader>rs :vsc Refactor.Rename<CR>
 
-" Toggle fold under cursor
-nnoremap za za
-
-" Open all folds
-nnoremap zR zR
-
-" Close all folds
-nnoremap zM zM
-
-" Open one fold level
-nnoremap zo zo
-
-" Close one fold level
-nnoremap zc zc
+" --- Folding (use defaults; no redundant self-maps) ---
+" za  toggle under cursor
+" zR  open all folds
+" zM  close all folds
+" zo  open one fold
+" zc  close one fold
 
 " Diagnostics (mocked)
 nnoremap <leader>cd :echo "Show diagnostics"<CR>
 nnoremap <leader>cf :echo "Format code"<CR>
-
-" Git (mocked)
-nnoremap <leader>gb :echo "Git blame line"<CR>
-nnoremap <leader>gB :echo "Open in GitHub"<CR>
 
 " Tabs (mocked)
 nnoremap <leader><Tab>n :tabnew<CR>
@@ -121,3 +109,53 @@ nnoremap <leader><Tab>h :tabprevious<CR>
 nnoremap <leader>uw :set wrap!<CR>
 nnoremap <leader>ul :set number!<CR>
 nnoremap <leader>uL :set relativenumber!<CR>
+
+" Visual Indent Blocks
+vmap > >gv
+vmap < <gv
+
+" Comments
+" Toggle line comment on current line
+nnoremap gcc :vsc Edit.ToggleLineComment<CR>
+" Toggle comment for visual selection
+vnoremap gc :vsc Edit.ToggleBlockComment<CR>
+
+" Close current buffer/document
+nnoremap <leader>bd :vsc File.Close<CR>
+
+" Close all but current (approx.)
+nnoremap <leader>bo :vsc Window.CloseAllButThis<CR>
+
+" Git Blame (VS shows blame in Git Changes or inline)
+nnoremap <leader>gb :vsc View.GitRepositoryWindow<CR>
+
+" Git Browse (open in browser)
+nnoremap <leader>gB :vsc File.ViewinBrowser<CR>
+
+" Git Diff (current file vs HEAD)
+nnoremap <leader>gd :vsc Git.CompareWithUnmodified<CR>
+
+" Git Diff (origin) – VS uses Compare with Branch
+nnoremap <leader>gD :vsc Git.CompareWithBranch<CR>
+
+" Git Current File History
+nnoremap <leader>gf :vsc Git.ViewFileHistory<CR>
+
+" Lazygit equivalent – open Git Changes window
+nnoremap <leader>gg :vsc View.GitChanges<CR>
+
+" Git Log (solution)
+nnoremap <leader>gl :vsc Git.ViewHistory<CR>
+
+" Toggle options (LazyVim-like UX toggles) ---
+nnoremap <leader>uw :set wrap!<CR>
+nnoremap <leader>ul :set number!<CR>
+nnoremap <leader>uL :set relativenumber!<CR>
+
+"Toggle Error List (LazyVim uses <leader>xx for Trouble)
+" This opens Visual Studio's Error List window
+nnoremap <leader>xx :vsc View.ErrorList<CR>
+
+" Toggle Task List (similar to Quickfix list in Vim)
+" This opens Visual Studio's Task List window
+nnoremap <leader>xq :vsc View.TaskList<CR>
