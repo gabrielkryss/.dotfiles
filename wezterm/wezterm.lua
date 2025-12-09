@@ -164,7 +164,9 @@ function tab_title(tab_info)
 end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local scheme = color_schemes[selected_colorscheme]
+	-- get the currently active scheme name from the runtime config
+	local current_scheme_name = config.color_scheme
+	local scheme = color_schemes[current_scheme_name] or {}
 
 	-- Safe fallbacks if some fields are missing
 	local edge_background = scheme.tab_bar and scheme.tab_bar.background or scheme.background or "#222222"

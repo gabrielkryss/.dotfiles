@@ -13,6 +13,29 @@ table.sort(scheme_names)
 
 local current_scheme_index = 1
 
+local function cycle_tab_with_temp_bar(window, direction)
+	local overrides = window:get_config_overrides() or {}
+	local original_state = overrides.enable_tab_bar
+
+	-- If tab bar is disabled, temporarily enable it
+	if original_state == false then
+		overrides.enable_tab_bar = true
+		window:set_config_overrides(overrides)
+	end
+
+	-- Perform the tab cycle
+	window:perform_action(wezterm.action.ActivateTabRelative(direction), window:active_pane())
+
+	-- If the original state was false, schedule turning it back off
+	if original_state == false then
+		wezterm.time.call_after(1.0, function()
+			local revert = window:get_config_overrides() or {}
+			revert.enable_tab_bar = false
+			window:set_config_overrides(revert)
+		end)
+	end
+end
+
 function M.apply_to_config(config)
 	-- config.disable_default_key_bindings = true
 
@@ -106,6 +129,41 @@ function M.apply_to_config(config)
 				-- Apply the scheme
 				local overrides = window:get_config_overrides() or {}
 				overrides.color_scheme = scheme
+
+				-- also update tab bar colors dynamically
+				local cs = my_schemes[scheme]
+				if cs then
+					overrides.colors = {
+						tab_bar = {
+							background = cs.background,
+							active_tab = {
+								bg_color = cs.cursor_bg or cs.selection_bg or cs.background,
+								fg_color = cs.cursor_fg or cs.foreground,
+								intensity = "Bold",
+							},
+							inactive_tab = {
+								bg_color = cs.background,
+								fg_color = cs.foreground,
+							},
+							inactive_tab_hover = {
+								bg_color = cs.selection_bg or "#444444",
+								fg_color = cs.selection_fg or "#ffffff",
+								italic = true,
+							},
+							new_tab = {
+								bg_color = cs.background,
+								fg_color = cs.foreground,
+							},
+							new_tab_hover = {
+								bg_color = cs.selection_bg or "#444444",
+								fg_color = cs.selection_fg or "#ffffff",
+								italic = true,
+							},
+							inactive_tab_edge = cs.selection_bg or "#575757",
+						},
+					}
+				end
+
 				window:set_config_overrides(overrides)
 				-- Print the scheme name (toast notification), but hard to see with glazewm
 				window:toast_notification("WezTerm", "Colorscheme: " .. scheme, nil, 4000)
@@ -126,6 +184,41 @@ function M.apply_to_config(config)
 				local scheme = scheme_names[current_scheme_index]
 				local overrides = window:get_config_overrides() or {}
 				overrides.color_scheme = scheme
+
+				-- also update tab bar colors dynamically
+				local cs = my_schemes[scheme]
+				if cs then
+					overrides.colors = {
+						tab_bar = {
+							background = cs.background,
+							active_tab = {
+								bg_color = cs.cursor_bg or cs.selection_bg or cs.background,
+								fg_color = cs.cursor_fg or cs.foreground,
+								intensity = "Bold",
+							},
+							inactive_tab = {
+								bg_color = cs.background,
+								fg_color = cs.foreground,
+							},
+							inactive_tab_hover = {
+								bg_color = cs.selection_bg or "#444444",
+								fg_color = cs.selection_fg or "#ffffff",
+								italic = true,
+							},
+							new_tab = {
+								bg_color = cs.background,
+								fg_color = cs.foreground,
+							},
+							new_tab_hover = {
+								bg_color = cs.selection_bg or "#444444",
+								fg_color = cs.selection_fg or "#ffffff",
+								italic = true,
+							},
+							inactive_tab_edge = cs.selection_bg or "#575757",
+						},
+					}
+				end
+
 				window:set_config_overrides(overrides)
 				-- Print the scheme name (toast notification), but hard to see with glazewm
 				window:toast_notification("WezTerm", "Colorscheme: " .. scheme, nil, 4000)
@@ -165,8 +258,22 @@ function M.apply_to_config(config)
 		{ key = "DownArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Down") },
 
 		-- Tab cycling (browser-like ergonomics)
-		{ key = "Tab", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
-		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
+		-- { key = "Tab", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
+		-- { key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
+		{
+			key = "Tab",
+			mods = "CTRL",
+			action = wezterm.action_callback(function(window, pane)
+				cycle_tab_with_temp_bar(window, 1)
+			end),
+		},
+		{
+			key = "Tab",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action_callback(function(window, pane)
+				cycle_tab_with_temp_bar(window, -1)
+			end),
+		},
 
 		-- Optional mnemonic fallback (brackets = left/right)
 		{ key = "[", mods = "ALT", action = wezterm.action.ActivateTabRelative(-1) },
